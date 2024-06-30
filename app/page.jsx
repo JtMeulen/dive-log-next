@@ -6,13 +6,13 @@ import LogoImg from "@/public/logo.png";
 
 export default function HomePage() {
   return (
-    <main >
+    <main className={styles.main}>
       <h1>Welcome to ScubApp</h1>
       <p>Your favorite scuba dive log!</p>
 
-      {/* <Image src={LogoImg} alt="ScubApp logo" /> */}
+      <Image src={LogoImg} alt="ScubApp logo" />
 
-      <Link href="/auth">Login</Link>
+      <Link href="/auth">Login or Register</Link>
     </main>
   );
 }

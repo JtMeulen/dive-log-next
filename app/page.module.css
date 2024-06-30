@@ -1,0 +1,12 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.main img {
+  width: clamp(200px, 50%, 400px);
+  height: auto;
+  margin-block-end: 1.5rem;
+}
