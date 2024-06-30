@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import styles from "./Header.module.css";
+import NavLink from "@/components/NavLink";
 import LogoImg from "@/public/logo.png";
 
 export default function Header() {
@@ -11,7 +12,7 @@ export default function Header() {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <defs>
             <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.3)" />
+              <stop offset="0%" stopColor="var(--background-color-wave)" />
               <stop offset="100%" stopColor="rgba(255,255,255,0)" />
             </linearGradient>
           </defs>
@@ -37,16 +38,16 @@ export default function Header() {
           <ul>
             {/* TODO: nav links should be different for logged in state */}
             <li>
-              <Link href="/auth">Login</Link>
+              <NavLink href="/auth">Login</NavLink>
             </li>
             <li>
-              <Link href="/profile">Profile</Link>
+              <NavLink href="/profile">Profile</NavLink>
             </li>
             <li>
-              <Link href="/dives">My dives</Link>
+              <NavLink href="/dives">My dives</NavLink>
             </li>
             <li>
-              <Link href="/about">About</Link>
+              <NavLink href="/about">About</NavLink>
             </li>
           </ul>
         </nav>

@@ -1,0 +1,7 @@
+.link {
+  font-weight: bold;
+}
+
+.active {
+  color: var(--navlink-color-active);
+}

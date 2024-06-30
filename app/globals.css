@@ -1,12 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
 
 :root {
+  --background-color-light: #2c5f77;
+  --background-color-dark: #0c1b22;
+  --background-color-wave: rgba(255,255,255,0.3);
+
+  /*  Darker colors, (also should turn wave svg to lesser opacity) */
+  /* --background-color-light: #142a35;*/
+  /* --background-color-dark: #020507; */
+  /* --background-color-wave: rgba(255,255,255,0.05);  */
+  
   --font-color: #eaf0fd;
 
   --link-color: #eaf0fd;
   --link-color-hover: #d7dfe8;
   --link-footer-color: #a2abbf;
   --link-footer-color-hover: #848c9f;
+
+  --navlink-color-active: #f3b052;
 }
 
 * {
@@ -22,7 +33,7 @@ body {
   padding: 12px 12px 3rem; 
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(#2c5f77, #0c1b22);
+  background: linear-gradient(var(--background-color-light), var(--background-color-dark));
   color: var(--font-color);
   position: relative;
 }
@@ -33,22 +44,22 @@ h1 {
 }
 
 h2 {
-  font-size: 2.7rem;
+  font-size: 2.4rem;
   margin-bottom: 0;
 }
 
 h3 {
-  font-size: 2.5rem;
+  font-size: 2.0rem;
   margin-bottom: 0;
 }
 
 h4 {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   margin-bottom: 0;
 }
 
 h5 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 0;
 }
 
