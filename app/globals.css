@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  /* Fixed set of 12px padding, except 3rem on the bottom for the absolute positioned footer */
+  /* Fixed 12px padding, except 3rem on the bottom to make space for the absolute positioned footer */
   padding: 12px 12px 3rem; 
   margin: 0;
   min-height: 100vh;

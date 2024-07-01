@@ -1,0 +1,57 @@
+.link {
+  text-decoration: none;
+}
+
+.link:hover, .link:active {
+  color: unset;
+}
+
+/* TODO: turn the tile into a grid */
+/* Image should swap to the left on small viewports */
+.tile {
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(90deg, #172531, #13314a);
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 12rem;
+}
+
+.imageWrapper img {
+  transition: transform .1s;
+  object-fit: cover;
+}
+
+.content {
+  padding: .5rem;
+}
+
+.title {
+  font-size: 1.3rem;
+  margin: 0 0 .1rem;
+}
+
+.description {
+  font-size: 1rem;
+  margin: 0 0 .5rem;
+}
+
+.location {
+  font-size: .9rem;
+  margin: 0 0 .5rem;
+}
+
+.date {
+  font-size: .9rem;
+  margin: 0 0 .5rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: .9rem;
+}
+
