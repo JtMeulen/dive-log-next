@@ -18,3 +18,17 @@
 .primary:active {
   background: #8fa0cb;
 }
+
+.secondary {
+  background: transparent;
+  border: 2px solid #6a789d;
+  color: var(--font-color);
+}
+
+.secondary:hover {
+  border-color: #6a789d;
+}
+
+.secondary:active {
+  border-color: #8fa0cb;
+}

@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  border: 4px solid white;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  overflow:hidden;
+  width: 12rem;
+  height: 12rem;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  max-width: 20rem;
+}

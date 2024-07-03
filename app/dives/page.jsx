@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import DiveGrid from "@/components/DiveGrid";
+import DiveTile from "@/components/DiveTile";
 
 export default function DivesPage() {
   return (
@@ -18,7 +18,13 @@ export default function DivesPage() {
         </div>
       </article> */}
 
-      <DiveGrid dives={dummyData} />
+      <ul className={styles.grid}>
+        {dummyData.map((dive) => (
+          <li key={dive.slug}>
+            <DiveTile {...dive} />
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

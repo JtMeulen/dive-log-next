@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import styles from "./Header.module.css";
-import NavLink from "@/components/NavLink";
+import NavLink from "@/components/ui/NavLink";
 import LogoImg from "@/public/logo.png";
 
 export default function Header() {
@@ -28,7 +28,6 @@ export default function Header() {
       </div>
 
       <header className={styles.header}>
-
         <Link href="/" className={styles.logo}>
           <Image src={LogoImg} alt="ScubApp logo" />
           <h1>ScubApp</h1>
