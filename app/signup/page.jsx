@@ -1,29 +1,25 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 
 import styles from "./page.module.css";
+
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
-export default function Signup() {
+export default function SignupPage() {
   // const passwordRef = useRef(null);
 
   const submitAction = async (formData) => {
     // TODO: move to file so we can use server actions
     // 'use server';
 
-    // const response = await fetch('/api/signup', {
-    //   method: 'POST',
-    //   body: data,
-    // });
-
-    const userData = {};
-
     console.log(formData);
   };
 
   const verifyRepeatPassword = (e) => {
+    // TODO: verify passwords match
     console.log(e.target.value)
     // if (e.target.value !== passwordRef?.current.value) {
     //   console.log("Passwords do not match!");
@@ -48,6 +44,8 @@ export default function Signup() {
 
         <Button type="submit">Sign up</Button>
       </form>
+
+      <p>Already a member? <Link href="/login">Login</Link> instead.</p>
     </main>
   );
 }
