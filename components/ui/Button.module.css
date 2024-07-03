@@ -21,8 +21,10 @@
 
 .secondary {
   background: transparent;
-  border: 2px solid #6a789d;
   color: var(--font-color);
+  border: 2px solid #6a789d;
+  padding: 6px; /* change the padding due to the border */
+  border-radius: 6px;
 }
 
 .secondary:hover {
