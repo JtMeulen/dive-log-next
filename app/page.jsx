@@ -12,7 +12,9 @@ export default function HomePage() {
 
       <Image src={LogoImg} alt="ScubApp logo" />
 
-      <Link href="/auth">Login or Register</Link>
+      <div>
+        <Link href="/login">Login</Link> or <Link href="/signup">Signup</Link>
+      </div>
     </main>
   );
 }

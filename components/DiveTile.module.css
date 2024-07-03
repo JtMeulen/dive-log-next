@@ -10,8 +10,8 @@
 /* Image should swap to the left on small viewports */
 .tile {
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(90deg, #172531, #13314a);
+  box-shadow: var(--container-box-shadow);
+  background: var(--container-background);
   overflow: hidden;
 }
 

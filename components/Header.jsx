@@ -38,7 +38,7 @@ export default function Header() {
           <ul>
             {/* TODO: nav links should be different for logged in state */}
             <li>
-              <NavLink href="/auth">Login</NavLink>
+              <NavLink href="/login">Login</NavLink>
             </li>
             <li>
               <NavLink href="/profile">Profile</NavLink>

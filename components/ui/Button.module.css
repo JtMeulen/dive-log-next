@@ -1,0 +1,20 @@
+.button {
+  border-radius: 4px;
+  border: none;
+  padding: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.primary {
+  background: #7484ac;
+  color: var(--font-color);
+}
+
+.primary:hover {
+  background: #6a789d;
+}
+
+.primary:active {
+  background: #8fa0cb;
+}

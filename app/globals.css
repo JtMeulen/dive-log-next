@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
 
 :root {
-  --background-color-light: #2c5f77;
-  --background-color-dark: #0c1b22;
+  --body-color-light: #2c5f77;
+  --body-color-dark: #0c1b22;
+  --body-background: linear-gradient(var(--body-color-light), var(--body-color-dark));
   --background-color-wave: rgba(255,255,255,0.3);
 
-  /*  Darker colors, (also should turn wave svg to lesser opacity) */
-  /* --background-color-light: #142a35;*/
-  /* --background-color-dark: #020507; */
-  /* --background-color-wave: rgba(255,255,255,0.05);  */
+  --container-color-light: #13314a;
+  --container-color-dark: #172531;
+  --container-background: linear-gradient(90deg, var(--container-color-dark), var(--container-color-light));
+  --container-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   
   --font-color: #eaf0fd;
 
@@ -24,7 +25,7 @@
   box-sizing: border-box;
 }
 
-html {
+html, input, button, select, textarea {
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -33,7 +34,7 @@ body {
   padding: 12px 12px 3rem; 
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(var(--background-color-light), var(--background-color-dark));
+  background: var(--body-background);
   color: var(--font-color);
   position: relative;
 }
