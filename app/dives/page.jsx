@@ -1,14 +1,20 @@
+import Link from "next/link";
+
 import styles from "./page.module.css";
 import DiveTile from "@/components/DiveTile";
 
 export default function DivesPage() {
   const totalDives = dummyData.length;
-  const totalTime = dummyData.reduce((acc, dive) => acc + parseInt(dive.time), 0);
+  const totalTime = dummyData.reduce(
+    (acc, dive) => acc + parseInt(dive.time),
+    0
+  );
   const averageDepth = Math.round(
     dummyData.reduce((acc, dive) => acc + parseInt(dive.depth), 0) / totalDives
   );
   const timeSinceLastDive = Math.round(
-    (Date.now() - new Date(dummyData[totalDives - 1].date).getTime()) / (1000 * 60 * 60 * 24)
+    (Date.now() - new Date(dummyData[totalDives - 1].date).getTime()) /
+      (1000 * 60 * 60 * 24)
   );
 
   return (
@@ -18,7 +24,6 @@ export default function DivesPage() {
         <p>Here you can find all the dives you have logged.</p>
       </header>
 
-      {/* TODO Add a section with collective quick overview data */}
       <article className={styles.overview}>
         <h3>Totals</h3>
         <p>Logged dives: {totalDives}</p>
@@ -26,6 +31,10 @@ export default function DivesPage() {
         <p>Average depth: {averageDepth}m</p>
         <p>Days since last dive: {timeSinceLastDive}</p>
       </article>
+
+      <h3>
+        <Link href="/dives/new">Log a new dive!</Link>
+      </h3>
 
       <ul className={styles.grid}>
         {dummyData.map((dive) => (

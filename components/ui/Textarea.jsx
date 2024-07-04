@@ -6,7 +6,12 @@ export default function Input({ label, name, ...rest }) {
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>
-      <input name={name} className={styles.input} {...rest}></input>
+      <textarea
+        name={name}
+        rows="5"
+        className={styles.input}
+        {...rest}
+      ></textarea>
     </div>
   );
 }

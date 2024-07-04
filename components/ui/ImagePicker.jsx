@@ -6,7 +6,13 @@ export default function Input({ label, name, ...rest }) {
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>
-      <input name={name} className={styles.input} {...rest}></input>
+      <input
+        type="file"
+        accept="image/png, image/jpeg, image/jpg, image/heic, image/heif"
+        name={name}
+        className={styles.input}
+        {...rest}
+      ></input>
     </div>
   );
 }
