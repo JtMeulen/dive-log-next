@@ -45,7 +45,7 @@ export default function SignupPage() {
         <Button type="submit">Sign up</Button>
       </form>
 
-      <p>Already a member? <Link href="/login">Login</Link> instead.</p>
+      <p className={styles.link}>Already a member? <Link href="/login">Login</Link> instead.</p>
     </main>
   );
 }

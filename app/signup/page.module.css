@@ -18,3 +18,8 @@
   box-shadow: var(--container-box-shadow);
   background: var(--container-background);
 }
+
+.link {
+  text-align: center;
+  font-size: 1.3rem;
+}

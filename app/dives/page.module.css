@@ -11,6 +11,7 @@
 .overview {
   border-radius: 12px;
   width: 90%;
+  max-width: 90rem;
   box-shadow: var(--container-box-shadow);
   background: var(--container-background);
   padding: 12px;
@@ -31,8 +32,9 @@
   max-width: 90rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
-  grid-gap: 5rem;
-  margin: 2rem auto;
+  /* grid-auto-rows: 1fr; */
+  grid-gap: 2rem;
+  margin-top: 2rem;
   list-style: none;
   padding: 0;
 }

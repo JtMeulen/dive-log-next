@@ -25,7 +25,7 @@ export default function LoginPage() {
         <Button type="submit">Login</Button>
       </form>
 
-      <p>Not a member yet? <Link href="/signup">Sign up</Link> instead!</p>
+      <p className={styles.link}>Not a member yet? <Link href="/signup">Sign up</Link> instead!</p>
     </main>
   );
 }
