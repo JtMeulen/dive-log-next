@@ -14,3 +14,14 @@
   padding: 8px;
   font-size: 1.1rem;
 }
+
+.imagePreview {
+  margin-top: 4px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.imagePreview img {
+  object-fit: cover;
+}
