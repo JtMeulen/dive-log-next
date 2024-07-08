@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
 import Button from "@/components/ui/Button";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
   // TODO: fetch real user data
   const user = {
     name: "John Doe",
