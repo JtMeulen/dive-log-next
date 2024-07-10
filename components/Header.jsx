@@ -29,8 +29,8 @@ export default function Header() {
 
       <header className={styles.header}>
         <Link href="/" className={styles.logo}>
-          <Image src={LogoImg} alt="ScubApp logo" />
-          <h1>ScubApp</h1>
+          <Image src={LogoImg} alt="NudiLogs logo" />
+          <h1>NudiLogs</h1>
         </Link>
 
         <nav className={styles.nav}>

@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { AuthProvider } from  "@/app/authProvider";
 
 export const metadata = {
-  title: "ScubApp",
+  title: "NudiLogs",
   description: "Your favorite scuba dive log!",
 };
 
