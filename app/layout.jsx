@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import { AuthProvider } from  "@/app/authProvider";
 
 export const metadata = {
-  title: "NudiLogs",
-  description: "Your favorite scuba dive log!",
+  title: "ScubiBranches",
+  description: "Your favorite nudibranch dive log!",
 };
 
 export default function RootLayout({ children }) {

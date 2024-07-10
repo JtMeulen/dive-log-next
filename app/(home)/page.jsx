@@ -7,10 +7,10 @@ import LogoImg from "@/public/logo.png";
 export default function HomePage() {
   return (
     <main className={styles.main}>
-      <h1>Welcome to NudiLogs</h1>
-      <p>Your favorite scuba dive log!</p>
+      <h1>Welcome to ScubiBranches</h1>
+      <p>Your favorite nudibranch dive log!</p>
 
-      <Image src={LogoImg} alt="NudiLogs logo" />
+      <Image src={LogoImg} alt="ScubiBranches logo" />
 
       <div>
         <Link href="/login">Login</Link> or <Link href="/signup">Signup</Link>

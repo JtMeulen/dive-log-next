@@ -2,19 +2,28 @@
 
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import styles from "./page.module.css";
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
 import Button from "@/components/ui/Button";
 
 export default function ProfilePage() {
-  const { status, data } = useSession();
-
-  // UseSession is only returning name and email, need more data
-  console.log(data)
+  const router = useRouter();
+  const { data, status } = useSession();
+  
+  // Usedata is only returning name and email, need more data
+  console.log('data',  data);
 
   // User browser locale to get the date format from createdAt
   // const memberSince = new Date(data.user.createdAt).toLocaleDateString();
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+
+    signOut();
+    router.push("/login");
+  }
 
   return (
     <main className={styles.main}>
@@ -31,7 +40,7 @@ export default function ProfilePage() {
 
           <div className={styles.actions}>
             <Button variant="primary">Edit Account</Button>
-            <Button variant="secondary" onClick={signOut}>
+            <Button variant="secondary" onClick={handleSignOut}>
               Sign Out
             </Button>
             <Button variant="secondary">Delete Account</Button>

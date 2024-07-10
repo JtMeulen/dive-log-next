@@ -1,11 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 import styles from "./Header.module.css";
 import NavLink from "@/components/ui/NavLink";
 import LogoImg from "@/public/logo.png";
 
 export default function Header() {
+  const { data, status } = useSession();
+  console.log(data);
+
   return (
     <>
       <div className={styles.wave}>
@@ -29,22 +35,27 @@ export default function Header() {
 
       <header className={styles.header}>
         <Link href="/" className={styles.logo}>
-          <Image src={LogoImg} alt="NudiLogs logo" />
-          <h1>NudiLogs</h1>
+          <Image src={LogoImg} alt="ScubiBranches logo" />
+          <h1>ScubiBranches</h1>
         </Link>
 
         <nav className={styles.nav}>
           <ul>
-            {/* TODO: nav links should be different for logged in state */}
-            <li>
-              <NavLink href="/login">Login</NavLink>
-            </li>
-            <li>
-              <NavLink href="/profile">Profile</NavLink>
-            </li>
-            <li>
-              <NavLink href="/dives">My dives</NavLink>
-            </li>
+            {/* TODO: while status is loading, don't show login either */}
+            {status === "authenticated" ? (
+              <>
+                <li>
+                  <NavLink href="/profile">Profile</NavLink>
+                </li>
+                <li>
+                  <NavLink href="/dives">My dives</NavLink>
+                </li>
+              </>
+            ) : (
+              <li>
+                <NavLink href="/login">Login</NavLink>
+              </li>
+            )}
             <li>
               <NavLink href="/about">About</NavLink>
             </li>
