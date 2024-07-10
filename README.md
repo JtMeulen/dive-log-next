@@ -7,15 +7,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.jsx`. The page auto-updates as you edit the file.
+## Local Dev
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Copy the contents of [/.env.example](.env.example) and rename to `.env.local`
+  - Run `npx auth secret` to generate secret
+- Install Mongodb Community `brew install mongodb-community@7.0`
+- Run `brew services start mongodb-community@7.0` to start the local DB
+  - Stop the DB with `brew services stop mongodb-community@7.0`

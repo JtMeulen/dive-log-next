@@ -1,40 +1,43 @@
+"use client";
+
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 import styles from "./page.module.css";
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
 import Button from "@/components/ui/Button";
 
-export default async function ProfilePage() {
-  // TODO: fetch real user data
-  const user = {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    age: "25",
-    avatar: "",
-    created_at: "2021-09-21T00:00:00Z",
-  };
+export default function ProfilePage() {
+  const { status, data } = useSession();
 
-  // User browser locale to get the date format from created_at
-  const memberSince = new Date(user.created_at).toLocaleDateString();
+  // UseSession is only returning name and email, need more data
+  console.log(data)
+
+  // User browser locale to get the date format from createdAt
+  // const memberSince = new Date(data.user.createdAt).toLocaleDateString();
 
   return (
     <main className={styles.main}>
-      {/* TODO: probably move this inside /profile/components folder so we can use client inside use server */}
-      <div className={styles.content}>
-        <div className={styles.avatar}>
-          <Image src={avatarPlaceholder} alt="Avatar image" fill />
-        </div>
+      {status === "authenticated" && (
+        <div className={styles.content}>
+          <div className={styles.avatar}>
+            <Image src={avatarPlaceholder} alt="Avatar image" fill />
+          </div>
 
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-        <p>Age: {user.age}</p>
-        <p>Joined: {memberSince}</p>
+          <p>{data.user.name}</p>
+          <p>{data.user.email}</p>
+          {/* <p>Age: {data.user.birthdate}</p> */}
+          {/* <p>Joined: {memberSince}</p> */}
 
-        <div className={styles.actions}>
-          <Button variant="primary">Edit Account</Button>
-          <Button variant="secondary">Delete Account</Button>
+          <div className={styles.actions}>
+            <Button variant="primary">Edit Account</Button>
+            <Button variant="secondary" onClick={signOut}>
+              Sign Out
+            </Button>
+            <Button variant="secondary">Delete Account</Button>
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }
