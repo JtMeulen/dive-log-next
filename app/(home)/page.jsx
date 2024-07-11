@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import styles from "./page.module.css";
 import LogoImg from "@/public/logo.png";
+import AuthLinks from "./_components/AuthLinks";
+import styles from "./page.module.css";
 
 export default function HomePage() {
   return (
@@ -12,9 +12,7 @@ export default function HomePage() {
 
       <Image src={LogoImg} alt="ScubiBranches logo" />
 
-      <div>
-        <Link href="/login">Login</Link> or <Link href="/signup">Signup</Link>
-      </div>
+      <AuthLinks />
     </main>
   );
 }

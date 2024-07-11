@@ -1,0 +1,18 @@
+- General
+  - Protect pages based on auth
+  - Add not-found.tsx page
+  - Add error.tsx page
+- Profile page
+  - Update user data form
+  - Fetch real data
+  - Image upload for avatars
+- Dives
+  - Fetch dives connected to user
+  - Create dive page
+- New dive form
+  - Styling of date input field
+  - Store data in DB
+  - Sanitize input
+- Auth
+  - Form validation frontend
+  - Form validation backend

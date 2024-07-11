@@ -40,8 +40,7 @@ export default function Header() {
 
         <nav className={styles.nav}>
           <ul>
-            {/* TODO: while status is loading, don't show login either */}
-            {status === "authenticated" ? (
+            {status === "authenticated" && (
               <>
                 <li>
                   <NavLink href="/profile">Profile</NavLink>
@@ -50,7 +49,8 @@ export default function Header() {
                   <NavLink href="/dives">My dives</NavLink>
                 </li>
               </>
-            ) : (
+            )}
+            {status === "unauthenticated" && (
               <li>
                 <NavLink href="/login">Login</NavLink>
               </li>
