@@ -2,10 +2,10 @@
 
 import styles from "./page.module.css";
 
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
-import Textarea from "@/components/ui/Textarea";
-import ImagePicker from "@/components/ui/ImagePicker";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+import Textarea from "@/components/Textarea";
+import ImagePicker from "@/components/ImagePicker";
 import { newDiveAction } from "@/lib/actions/newDive";
 
 export default function NewDivePage() {

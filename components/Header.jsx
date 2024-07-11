@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 import styles from "./Header.module.css";
-import NavLink from "@/components/ui/NavLink";
+import NavLink from "@/components/NavLink";
 import LogoImg from "@/public/logo.png";
 
 export default function Header() {

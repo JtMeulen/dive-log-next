@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 
 import styles from "./page.module.css";
 
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
 
 export default function LoginPage() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import styles from "./page.module.css";
-import DiveTile from "@/components/DiveTile";
+import DiveTile from "./_components/DiveTile";
 
 export default function DivesPage() {
   const totalDives = dummyData.length;

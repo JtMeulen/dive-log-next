@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import styles from "./page.module.css";
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
-import Button from "@/components/ui/Button";
+import Button from "@/components/Button";
 
 export default function ProfilePage() {
   const router = useRouter();
