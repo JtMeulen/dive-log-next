@@ -13,7 +13,7 @@ export default function ProfilePage() {
   const { data, status } = useSession();
 
   // Fetch user data using data.user.id
-  console.log(data?.user)
+  console.log(data?.user);
 
   // User browser locale to get the date format from createdAt
   // const memberSince = new Date(data.user.createdAt).toLocaleDateString();
