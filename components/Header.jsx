@@ -9,8 +9,7 @@ import NavLink from "@/components/ui/NavLink";
 import LogoImg from "@/public/logo.png";
 
 export default function Header() {
-  const { data, status } = useSession();
-  console.log(data);
+  const { status } = useSession();
 
   return (
     <>

@@ -11,9 +11,9 @@ import Button from "@/components/ui/Button";
 export default function ProfilePage() {
   const router = useRouter();
   const { data, status } = useSession();
-  
-  // Usedata is only returning name and email, need more data
-  console.log('data',  data);
+
+  // Fetch user data using data.user.id
+  console.log(data?.user)
 
   // User browser locale to get the date format from createdAt
   // const memberSince = new Date(data.user.createdAt).toLocaleDateString();
@@ -23,7 +23,7 @@ export default function ProfilePage() {
 
     signOut();
     router.push("/login");
-  }
+  };
 
   return (
     <main className={styles.main}>
