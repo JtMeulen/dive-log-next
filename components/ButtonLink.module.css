@@ -1,0 +1,38 @@
+.button {
+  border-radius: 4px;
+  border: none;
+  padding: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.primary {
+  background: #7484ac;
+  color: var(--font-color);
+}
+
+.primary:hover {
+  background: #6a789d;
+}
+
+.primary:active {
+  background: #8fa0cb;
+}
+
+.secondary {
+  background: transparent;
+  color: var(--font-color);
+  border: 2px solid #6a789d;
+  padding: 6px; /* change the padding due to the border */
+  border-radius: 6px;
+}
+
+.secondary:hover {
+  border-color: #6a789d;
+}
+
+.secondary:active {
+  border-color: #8fa0cb;
+}

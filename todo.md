@@ -2,9 +2,11 @@
   - Protect pages based on auth
   - Add not-found.tsx page
   - Add error.tsx page
+  - use Suspense to load data
 - Profile page
-  - Update user data form
-  - Fetch real data
+  - Edit user data form
+    - Styling
+    - Add server action
   - Image upload for avatars
 - Dives
   - Fetch dives connected to user

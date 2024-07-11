@@ -28,6 +28,7 @@ export default function SignupPage() {
 
     if (response?.user) {
       formRef.current?.reset();
+      // TODO: Signin automatically here too using signIn from next-auth?
       router.push("/login");
     }
   };
