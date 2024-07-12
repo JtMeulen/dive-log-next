@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -9,13 +9,16 @@ import styles from "./page.module.css";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { signupAction } from "@/lib/actions/signup";
+import Loader from "@/components/Loader";
 
 export default function SignupPage() {
   const formRef = useRef();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData(e.target);
 
@@ -24,6 +27,7 @@ export default function SignupPage() {
     if (response?.error) {
       // TODO: Show error message to user
       console.log(response.error);
+      setLoading(false);
     }
 
     if (response?.user) {
@@ -37,25 +41,31 @@ export default function SignupPage() {
     <main className={styles.main}>
       <h1>Sign up</h1>
 
-      <form className={styles.form} onSubmit={handleSignup} ref={formRef}>
-        <Input type="text" name="name" label="Name" required />
-        <Input type="email" name="email" label="Email" required />
-        <Input type="password" name="password" label="Password" required />
-        {/* <Input
-          type="password"
-          name="password-repeat"
-          label="Password repeat"
-          onPaste={(e) => e.preventDefault()}
-          onBlur={verifyRepeatPassword}
-          required
-        /> */}
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <form className={styles.form} onSubmit={handleSignup} ref={formRef}>
+            <Input type="text" name="name" label="Name" required />
+            <Input type="email" name="email" label="Email" required />
+            <Input type="password" name="password" label="Password" required />
+            {/* <Input
+              type="password"
+              name="password-repeat"
+              label="Password repeat"
+              onPaste={(e) => e.preventDefault()}
+              onBlur={verifyRepeatPassword}
+              required
+            /> */}
 
-        <Button type="submit">Sign up</Button>
-      </form>
+            <Button type="submit">Sign up</Button>
+          </form>
 
-      <p className={styles.link}>
-        Already a member? <Link href="/login">Login</Link> instead.
-      </p>
+          <p className={styles.link}>
+            Already a member? <Link href="/login">Login</Link> instead.
+          </p>
+        </>
+      )}
     </main>
   );
 }
