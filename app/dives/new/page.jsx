@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 import styles from "./page.module.css";
 
@@ -11,14 +12,17 @@ import Textarea from "@/components/Textarea";
 import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
 import { newDiveAction } from "@/lib/actions/newDive";
-import { getUser } from "@/lib/actions/getUser";
 
 export default function NewDivePage() {
+  const { status } = useSession();
   const router = useRouter();
   const formRef = useRef();
   const [loading, setLoading] = useState(false);
 
-  // TODO: protect client side route from adding new dives (BE already covers it though)
+  if (status === "unauthenticated") {
+    router.push("/login");
+    return null;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +46,7 @@ export default function NewDivePage() {
     <main className={styles.main}>
       <h1>Log a new dive!</h1>
 
-      {loading ? (
+      {loading || status === "loading" ? (
         <Loader />
       ) : (
         <>
@@ -51,10 +55,22 @@ export default function NewDivePage() {
               type="text"
               name="title"
               label="Title of the dive"
+              placeholder="e.g. Night dive at the pier"
               required
             />
-            <Input type="text" name="location" label="Dive site" />
-            <Input type="text" name="description" label="Short description" />
+            <Input
+              type="text"
+              name="location"
+              label="Dive site"
+              placeholder="e.g. Blue Hole, Gozo"
+            />
+            <Input
+              type="text"
+              name="description"
+              label="Short description"
+              max="80"
+              placeholder="e.g. Saw so many nudibranches!"
+            />
             <Input type="date" name="date" label="Date" required />
             <Input type="number" name="time" label="Dive time (minutes)" />
             <Input
@@ -63,7 +79,11 @@ export default function NewDivePage() {
               name="depth"
               label="Depth (meters)"
             />
-            <Textarea name="notes" label="Notes" />
+            <Textarea
+              name="notes"
+              label="Notes"
+              placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
+            />
             <ImagePicker name="image" label="Image" />
 
             <Button type="submit">Log dive!</Button>

@@ -9,6 +9,7 @@ export default async function DivesPage() {
   const { dives, error } = await getDives();
 
   if (error) {
+    // TODO: Show error message to user or move to a custom error page?
     return error.includes("Unauthorized") ? redirect("/login") : <p>ERROORR</p>;
   }
 

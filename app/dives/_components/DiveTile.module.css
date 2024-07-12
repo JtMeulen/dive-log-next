@@ -21,7 +21,6 @@
 }
 
 .imageWrapper img {
-  transition: transform .1s;
   object-fit: cover;
 }
 

@@ -11,7 +11,6 @@ import { redirect } from "next/navigation";
 export default async function ProfilePage() {
   const user = await getUser();
 
-  // TODO: should be some common method to protect routes
   if (user.error) {
     return redirect("/");
   }
