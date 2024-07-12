@@ -6,8 +6,6 @@ import ButtonLink from "@/components/ButtonLink";
 import Button from "@/components/Button";
 import { getDive } from "@/lib/actions/getDive";
 
-import dummyImage from "@/public/dummy/img-1.jpg";
-
 export default async function DivePage({ params }) {
   const { id } = params;
 
@@ -20,9 +18,11 @@ export default async function DivePage({ params }) {
 
   return (
     <main className={styles.main}>
-      <div className={styles.imageWrapper}>
-        <Image src={dummyImage} alt={dive.title} fill />
-      </div>
+      {dive.image && (
+        <div className={styles.imageWrapper}>
+          <Image src={dive.image} alt={dive.title} fill />
+        </div>
+      )}
 
       <section className={styles.content}>
         <h1>{dive.title}</h1>
