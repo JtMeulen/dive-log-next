@@ -3,33 +3,25 @@ import Link from "next/link";
 
 import styles from "./DiveTile.module.css";
 
-// TODO: Cleanup props
-export default function DiveTile({
-  title,
-  location = "",
-  date = "",
-  depth = "",
-  time = "",
-  image = "",
-  description = "",
-  slug,
-}) {
+import imgPlaceholder from "@/public/dive_img_placeholder.jpg";
+
+export default function DiveTile({ dive }) {
   return (
-    <Link href={`/dives/${slug}`} className={styles.link}>
+    <Link href={`/dives/${dive._id?.toString()}`} className={styles.link}>
       <article className={styles.tile}>
         <header className={styles.imageWrapper}>
-          <Image src={image} alt={title} fill />
+          <Image src={dive.image || imgPlaceholder} alt={dive.title} fill />
         </header>
         <section className={styles.content}>
-          <h3 className={styles.title}>{title}</h3>
+          <h3 className={styles.title}>{dive.title}</h3>
           <p className={styles.location}>
-            <em>{location}</em>
+            <em>{dive.location}</em>
           </p>
-          <p className={styles.date}>{date}</p>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.date}>{dive.date?.toDateString()}</p>
+          <p className={styles.description}>{dive.description}</p>
           <div className={styles.stats}>
-            <span>Max depth: {depth}</span>
-            <span>Time: {time}</span>
+            <span>Max depth: {dive.depth}</span>
+            <span>Time: {dive.time}</span>
           </div>
         </section>
       </article>
