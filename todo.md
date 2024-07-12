@@ -3,6 +3,9 @@
   - Add not-found.tsx page
   - Add error.tsx page
   - use Suspense to load data
+  - form validation new dive, login, signup, edit profile
+    - handle errors from BE
+    - handle field validation
 - Profile page
   - Edit user data form
     - Styling
@@ -13,7 +16,6 @@
   - Create dive page
 - New dive form
   - Styling of date input field
-  - Store data in DB
   - Sanitize input
 - Auth
   - Form validation frontend
