@@ -1,6 +1,5 @@
 - General
   - Protect pages based on auth
-  - Add not-found.tsx page
   - Add error.tsx page
   - use Suspense to load data
   - form validation new dive, login, signup, edit profile
@@ -12,7 +11,6 @@
     - Add server action
   - Image upload for avatars
 - Dives
-  - Fetch dives connected to user
   - Create dive page
 - New dive form
   - Styling of date input field
