@@ -10,6 +10,7 @@ export default function Input({ label, name, ...rest }) {
         name={name}
         rows="5"
         className={styles.input}
+        id={name}
         {...rest}
       ></textarea>
     </div>

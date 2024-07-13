@@ -31,6 +31,7 @@ export default async function DivePage({ params }) {
         <p>{dive.description}</p>
         <p>Depth: {dive.depth}m</p>
         <p>Dive time: {dive.time}mins</p>
+        <p>Nudibranch seen: {dive.seen_nudibranch ? "Yes!" : "No :("}</p>
         {dive.notes && (
           <>
             <p className={styles.label}>

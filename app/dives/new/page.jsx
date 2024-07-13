@@ -12,6 +12,7 @@ import Textarea from "@/components/Textarea";
 import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
 import { newDiveAction } from "@/lib/actions/newDive";
+import Switch from "@/components/Switch";
 
 export default function NewDivePage() {
   const { status } = useSession();
@@ -83,6 +84,10 @@ export default function NewDivePage() {
               name="notes"
               label="Notes"
               placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
+            />
+            <Switch
+              name="seen_nudibranch"
+              label="Seen any nudibranches?"
             />
             <ImagePicker name="image" label="Image" />
 

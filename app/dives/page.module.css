@@ -15,6 +15,7 @@
   box-shadow: var(--container-box-shadow);
   background: var(--container-background);
   padding: 12px;
+  margin-bottom: 2rem;
 }
 
 .overview h3 {

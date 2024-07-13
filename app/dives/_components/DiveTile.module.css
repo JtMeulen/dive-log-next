@@ -13,6 +13,7 @@
   box-shadow: var(--container-box-shadow);
   background: var(--container-background);
   overflow: hidden;
+  position: relative;
 }
 
 .imageWrapper {
@@ -22,6 +23,14 @@
 
 .imageWrapper img {
   object-fit: cover;
+}
+
+.nudiStamp {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  transform: rotate(12deg);
+  opacity: .8;
 }
 
 .content {

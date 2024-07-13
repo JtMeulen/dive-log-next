@@ -6,7 +6,7 @@ export default function Input({ label, name, ...rest }) {
       <label htmlFor={name} className={styles.label}>
         {label}
       </label>
-      <input name={name} className={styles.input} {...rest}></input>
+      <input id={name} name={name} className={styles.input} {...rest}></input>
     </div>
   );
 }

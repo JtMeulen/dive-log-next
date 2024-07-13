@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import styles from "./page.module.css";
+import ButtonLink from "@/components/ButtonLink";
 import DiveTile from "./_components/DiveTile";
 import { getDives } from "@/lib/actions/getDives";
 
@@ -41,19 +41,18 @@ export default async function DivesPage() {
         <p>Logged dives: {totalDives}</p>
         <p>Dive time: {totalTime}mins</p>
         <p>Average depth: {averageDepth}m</p>
+        <p>Dives with nudibrances: {dives.filter((dive) => dive.seen_nudibranch).length}</p>
         <p>Days since last dive: {timeSinceLastDive}</p>
       </article>
 
       {dives.length === 0 ? (
         <p>
           No dives logged yet.{" "}
-          <Link href="/dives/new">Log your first dive!</Link>
+          <ButtonLink href="/dives/new">Log your first dive!</ButtonLink>
         </p>
       ) : (
         <>
-          <h3>
-            <Link href="/dives/new">Log a new dive!</Link>
-          </h3>
+          <ButtonLink href="/dives/new">Log a new dive!</ButtonLink>
 
           {/* TODO: Add filters, sorting and pagination  */}
 
