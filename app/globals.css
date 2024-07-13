@@ -80,3 +80,15 @@ a {
 a:hover, a:active {
   color: var(--link-color-hover);
 }
+
+.not-found {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+}
+
+.not-found img {
+  width: clamp(200px, 50%, 400px);
+  height: auto;
+}

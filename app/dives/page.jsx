@@ -44,17 +44,28 @@ export default async function DivesPage() {
         <p>Days since last dive: {timeSinceLastDive}</p>
       </article>
 
-      <h3>
-        <Link href="/dives/new">Log a new dive!</Link>
-      </h3>
+      {dives.length === 0 ? (
+        <p>
+          No dives logged yet.{" "}
+          <Link href="/dives/new">Log your first dive!</Link>
+        </p>
+      ) : (
+        <>
+          <h3>
+            <Link href="/dives/new">Log a new dive!</Link>
+          </h3>
 
-      <ul className={styles.grid}>
-        {dives.map((dive) => (
-          <li key={dive._id?.toString()}>
-            <DiveTile dive={dive} />
-          </li>
-        ))}
-      </ul>
+          {/* TODO: Add filters, sorting and pagination  */}
+
+          <ul className={styles.grid}>
+            {dives.map((dive) => (
+              <li key={dive._id?.toString()}>
+                <DiveTile dive={dive} />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </main>
   );
 }

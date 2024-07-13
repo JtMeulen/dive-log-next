@@ -43,10 +43,10 @@ export default function Header() {
             {status === "authenticated" && (
               <>
                 <li>
-                  <NavLink href="/profile">Profile</NavLink>
+                  <NavLink href="/dives">My dives</NavLink>
                 </li>
                 <li>
-                  <NavLink href="/dives">My dives</NavLink>
+                  <NavLink href="/profile">Profile</NavLink>
                 </li>
               </>
             )}
