@@ -12,6 +12,8 @@ import Button from "@/components/Button";
 export default async function EditProfilePage() {
   const user = await getUser();
 
+  // TODO: use client and show loading state when updating user
+
   return (
     <main className={styles.main}>
       <div className={styles.content}>

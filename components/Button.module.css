@@ -28,9 +28,22 @@
 }
 
 .secondary:hover {
-  border-color: #6a789d;
+  border-color: #535d7a;
 }
 
 .secondary:active {
   border-color: #8fa0cb;
+}
+
+.danger {
+  background: #742428;
+  color: var(--font-color);
+}
+
+.danger:hover {
+  background: #5b1c1f;
+}
+
+.danger:active {
+  background: #8a2a2f;
 }

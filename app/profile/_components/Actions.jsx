@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -7,41 +8,60 @@ import { deleteUser } from "@/lib/actions/deleteUser";
 import Button from "@/components/Button";
 import ButtonLink from "@/components/ButtonLink";
 import styles from "./page.module.css";
+import Modal from "@/components/Modal";
 
 export default function Actions() {
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
-  const handleSignOut = (e) => {
+  const handleSignOut = async (e) => {
     e.preventDefault();
 
-    signOut();
+    await signOut();
     router.push("/login");
   };
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    
+
     const response = await deleteUser();
 
     if (response.success) {
-      signOut();
+      await signOut();
       router.push("/");
     } else {
       console.log(response.error);
     }
-  }
+  };
 
   return (
-    <div className={styles.actions}>
-      <ButtonLink variant="primary" href="/profile/edit">
-        Edit Account
-      </ButtonLink>
-      <Button variant="secondary" onClick={handleSignOut}>
-        Sign Out
-      </Button>
-      <Button variant="secondary" onClick={handleDelete}>
-        Delete Account
-      </Button>
-    </div>
+    <>
+      <div className={styles.actions}>
+        <ButtonLink variant="primary" href="/profile/edit">
+          Edit Account
+        </ButtonLink>
+        <Button variant="secondary" onClick={handleSignOut}>
+          Sign Out
+        </Button>
+        <Button variant="danger" onClick={() => setShowModal(true)}>
+          Delete Account
+        </Button>
+      </div>
+
+      {/* Confirm modal for delete action */}
+      <Modal show={showModal} closeButtonHandler={() => setShowModal(false)}>
+        <p className={styles.modalText}>
+          Are you sure you want to delete your account?
+        </p>
+        <div className={styles.modalButtons}>
+          <Button variant="danger" onClick={handleDelete}>
+            Yes, delete my account
+          </Button>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+        </div>
+      </Modal>
+    </>
   );
 }

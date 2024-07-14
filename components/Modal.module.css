@@ -1,0 +1,28 @@
+.dialog {
+  border-radius: 12px;
+  width: clamp(200px, 90%, 600px);
+  padding: 12px;
+  box-shadow: var(--container-box-shadow);
+  background: var(--container-background);
+  border: var(--container-border);
+  color: var(--color-text);
+  word-break: normal;
+}
+
+.dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  float: right;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+}

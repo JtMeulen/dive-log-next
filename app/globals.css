@@ -10,6 +10,7 @@
   --container-color-dark: #172531;
   --container-background: linear-gradient(90deg, var(--container-color-dark), var(--container-color-light));
   --container-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  --container-border: 1px solid #ccc;
   
   --font-color: #eaf0fd;
 
