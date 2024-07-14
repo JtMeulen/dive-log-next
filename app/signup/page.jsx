@@ -45,7 +45,7 @@ export default function SignupPage() {
         <Loader />
       ) : (
         <>
-          <form className={styles.form} onSubmit={handleSignup} ref={formRef}>
+          <form onSubmit={handleSignup} ref={formRef}>
             <Input type="text" name="name" label="Name" required />
             <Input type="email" name="email" label="Email" required />
             <Input type="password" name="password" label="Password" required />

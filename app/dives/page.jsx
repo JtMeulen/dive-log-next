@@ -18,16 +18,21 @@ export default async function DivesPage() {
     (acc, dive) => acc + parseInt(dive.time || 0),
     0
   );
-  const averageDepth = Math.round(
-    dives.reduce((acc, dive) => acc + parseInt(dive.depth || 0), 0) / totalDives
-  );
+  const averageDepth = dives.length
+    ? Math.round(
+        dives.reduce((acc, dive) => acc + parseInt(dive.depth || 0), 0) /
+          totalDives
+      )
+    : 0;
 
   // TODO: we should only take the latest dive, so need to filter dives by date
   // And exclude dives in the future (as they can be added with a future date)
-  const timeSinceLastDive = Math.round(
-    (Date.now() - new Date(dives[totalDives - 1].date).getTime()) /
-      (1000 * 60 * 60 * 24)
-  );
+  const timeSinceLastDive = dives.length
+    ? Math.round(
+        (Date.now() - new Date(dives[totalDives - 1].date).getTime()) /
+          (1000 * 60 * 60 * 24)
+      )
+    : 0;
 
   return (
     <main className={styles.main}>
@@ -41,15 +46,18 @@ export default async function DivesPage() {
         <p>Logged dives: {totalDives}</p>
         <p>Dive time: {totalTime}mins</p>
         <p>Average depth: {averageDepth}m</p>
-        <p>Dives with nudibrances: {dives.filter((dive) => dive.seen_nudibranch).length}</p>
+        <p>
+          Dives with nudibrances:{" "}
+          {dives.filter((dive) => dive.seen_nudibranch).length}
+        </p>
         <p>Days since last dive: {timeSinceLastDive}</p>
       </article>
 
       {dives.length === 0 ? (
-        <p>
-          No dives logged yet.{" "}
+        <>
+          <p>No dives logged yet.</p>
           <ButtonLink href="/dives/new">Log your first dive!</ButtonLink>
-        </p>
+        </>
       ) : (
         <>
           <ButtonLink href="/dives/new">Log a new dive!</ButtonLink>

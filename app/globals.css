@@ -81,6 +81,17 @@ a:hover, a:active {
   color: var(--link-color-hover);
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  width: clamp(200px, 90%, 600px);
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: var(--container-box-shadow);
+  background: var(--container-background);
+}
+
 .not-found {
   display: flex;
   flex-flow: column;

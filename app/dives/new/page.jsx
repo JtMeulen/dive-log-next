@@ -51,7 +51,7 @@ export default function NewDivePage() {
         <Loader />
       ) : (
         <>
-          <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
+          <form onSubmit={handleSubmit} ref={formRef}>
             <Input
               type="text"
               name="title"

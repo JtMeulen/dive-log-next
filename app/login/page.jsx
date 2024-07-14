@@ -46,7 +46,7 @@ export default function LoginPage() {
         <Loader />
       ) : (
         <>
-          <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
+          <form onSubmit={handleSubmit} ref={formRef}>
             <Input type="email" name="email" label="Email" required />
             <Input type="password" name="password" label="Password" required />
             <Button type="submit">Login</Button>

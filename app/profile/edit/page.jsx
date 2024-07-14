@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
 import { getUser } from "@/lib/actions/getUser";
+import { updateUser } from "@/lib/actions/updateUser";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 
@@ -15,13 +16,28 @@ export default async function EditProfilePage() {
     <main className={styles.main}>
       <div className={styles.content}>
         <div className={styles.avatar}>
-          <Image src={avatarPlaceholder} alt="Avatar image" fill />
+          <Image
+            src={user.avatar || avatarPlaceholder}
+            alt="Avatar image"
+            fill
+          />
         </div>
-        <form>
-          <Input type="text" value={user.name} label="Name" required></Input>
-          <Input type="date" value={user.email} label="Date of birth"></Input>
 
-          <p>{user.email}</p>
+        <form action={updateUser}>
+          <Input
+            type="text"
+            defaultValue={user.name || ""}
+            label="Name"
+            name="name"
+            required
+          ></Input>
+          <Input
+            type="date"
+            defaultValue={user.birthdate ? new Date(user.birthdate)?.toISOString()?.split('T')[0] : ""}
+            label="Birthdate"
+            name="birthdate"
+          ></Input>
+
           <Button>Save</Button>
         </form>
       </div>
