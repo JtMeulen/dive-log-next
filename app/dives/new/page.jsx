@@ -3,22 +3,27 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
 
-import styles from "./page.module.css";
+import { newDiveAction } from "@/lib/actions/newDive";
 
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Textarea from "@/components/Textarea";
 import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
-import { newDiveAction } from "@/lib/actions/newDive";
 import Switch from "@/components/Switch";
+import Modal from "@/components/Modal";
+const Map = dynamic(() => import("@/components/Map"), { ssr: false });
+
+import styles from "./page.module.css";
 
 export default function NewDivePage() {
   const { status } = useSession();
   const router = useRouter();
   const formRef = useRef();
   const [loading, setLoading] = useState(false);
+  const [openMapModal, setOpenMapModal] = useState(false);
 
   if (status === "unauthenticated") {
     router.push("/login");
@@ -28,7 +33,11 @@ export default function NewDivePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+  
     const formData = new FormData(e.currentTarget);
+    // TODO: grab this from the result of the map modal
+    formData.append("location_coords", '11.888298,124.3912335');
+
     const response = await newDiveAction(formData);
 
     if (response?.error) {
@@ -85,14 +94,26 @@ export default function NewDivePage() {
               label="Notes"
               placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
             />
-            <Switch
-              name="seen_nudibranch"
-              label="Seen any nudibranches?"
-            />
+            <Switch name="seen_nudibranch" label="Seen any nudibranches?" />
             <ImagePicker name="image" label="Image" />
+            <Button onClick={() => setOpenMapModal(true)} variant="secondary">
+              Set dive location
+            </Button>
 
             <Button type="submit">Log dive!</Button>
           </form>
+
+          {/* Map Modal */}
+          <Modal show={openMapModal}>
+            <Map />
+
+            <Button
+              onClick={() => setOpenMapModal(false)}
+              className={styles.save}
+            >
+              Save location
+            </Button>
+          </Modal>
         </>
       )}
     </main>

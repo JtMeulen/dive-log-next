@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import styles from "./page.module.css";
 import ButtonLink from "@/components/ButtonLink";
 import Button from "@/components/Button";
 import { getDive } from "@/lib/actions/getDive";
+const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 export default async function DivePage({ params }) {
   const { id } = params;
@@ -23,6 +25,8 @@ export default async function DivePage({ params }) {
           <Image src={dive.image} alt={dive.title} fill />
         </div>
       )}
+
+      {dive.location_coords && <Map coords={dive.location_coords} />}
 
       <section className={styles.content}>
         <h1>{dive.title}</h1>
