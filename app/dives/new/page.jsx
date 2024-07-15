@@ -23,20 +23,25 @@ export default function NewDivePage() {
   const router = useRouter();
   const formRef = useRef();
   const [loading, setLoading] = useState(false);
-  const [openMapModal, setOpenMapModal] = useState(false);
+  const [mapCoords, setMapCoords] = useState(false);
 
   if (status === "unauthenticated") {
     router.push("/login");
     return null;
   }
 
+  const onCoordsChange = (coords) => {
+    setMapCoords(coords);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     const formData = new FormData(e.currentTarget);
-    // TODO: grab this from the result of the map modal
-    formData.append("location_coords", '11.888298,124.3912335');
+    if (mapCoords) {
+      formData.append("location_coords", `${mapCoords.lat},${mapCoords.lng}`);
+    }
 
     const response = await newDiveAction(formData);
 
@@ -54,7 +59,7 @@ export default function NewDivePage() {
 
   return (
     <main className={styles.main}>
-      <h1>Log a new dive!</h1>
+      <h1 className={styles.title}>Log a new dive!</h1>
 
       {loading || status === "loading" ? (
         <Loader />
@@ -95,25 +100,15 @@ export default function NewDivePage() {
               placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
             />
             <Switch name="seen_nudibranch" label="Seen any nudibranches?" />
+
             <ImagePicker name="image" label="Image" />
-            <Button onClick={() => setOpenMapModal(true)} variant="secondary">
-              Set dive location
-            </Button>
+
+            <div className={styles.mapContainer}>
+              <Map allowChange handleCoordsChange={onCoordsChange} />
+            </div>
 
             <Button type="submit">Log dive!</Button>
           </form>
-
-          {/* Map Modal */}
-          <Modal show={openMapModal}>
-            <Map />
-
-            <Button
-              onClick={() => setOpenMapModal(false)}
-              className={styles.save}
-            >
-              Save location
-            </Button>
-          </Modal>
         </>
       )}
     </main>

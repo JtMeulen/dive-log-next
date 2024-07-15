@@ -26,7 +26,11 @@ export default async function DivePage({ params }) {
         </div>
       )}
 
-      {dive.location_coords && <Map coords={dive.location_coords} />}
+      {dive.location_coords && (
+        <div className={styles.mapContainer}>
+          <Map coords={dive.location_coords} showDefaultMarker />
+        </div>
+      )}
 
       <section className={styles.content}>
         <h1>{dive.title}</h1>
