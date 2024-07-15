@@ -104,3 +104,10 @@ form {
   width: clamp(200px, 50%, 400px);
   height: auto;
 }
+
+/* Leaflet overrides to remove links */
+.leaflet-bottom.leaflet-right, 
+.maplibregl-control-container ,
+a[href="https://www.maptiler.com"] {
+  display: none !important;
+}

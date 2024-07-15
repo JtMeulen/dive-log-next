@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import L from "leaflet";
 import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
 
@@ -16,10 +16,10 @@ export default function Map({
   showDefaultMarker,
   allowChange,
   handleCoordsChange = () => {},
+  zoom = 12,
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [zoom] = useState(12);
 
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
@@ -58,7 +58,7 @@ export default function Map({
       });
     }
 
-    if(showDefaultMarker) {
+    if (showDefaultMarker) {
       L.marker(getCoords(coords), { icon: marker }).addTo(map.current);
     }
   }, [coords, zoom, allowChange, handleCoordsChange, showDefaultMarker]);
@@ -67,5 +67,10 @@ export default function Map({
     return coords.split(",").map((coord) => parseFloat(coord));
   };
 
-  return <div ref={mapContainer} className={styles.map} />;
+  return (
+    <div
+      ref={mapContainer}
+      className={`${styles.map} ${allowChange && styles.fingerCursor}`}
+    />
+  );
 }
