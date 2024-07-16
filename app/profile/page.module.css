@@ -29,4 +29,14 @@
   margin-block: 18px;
   position: relative;
   align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  position: relative !important;
 }

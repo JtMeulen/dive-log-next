@@ -4,17 +4,21 @@
   - use Suspense to load data
   - form validation new dive, login, signup, edit profile
     - handle errors from BE
-    - handle field validation
+  - Image upload protection
+    - Size
+    - Content?
 - Profile page
   - Edit user data form
     - Styling
-    - Add server action
-  - Image upload for avatars
 - Dives
   - Create dive page
+  - Delete dive function
+    - Also delete stored image
 - New dive form
   - Styling of date input field
   - Sanitize input
 - Auth
   - Form validation frontend
   - Form validation backend
+- About page update
+- Readme fixing

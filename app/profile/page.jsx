@@ -19,7 +19,7 @@ export default async function ProfilePage() {
     <main className={styles.main}>
       <div className={styles.content}>
         <div className={styles.avatar}>
-          <Image src={avatarPlaceholder} alt="Avatar image" fill />
+          <Image src={user.avatar || avatarPlaceholder} alt="Avatar image" fill />
         </div>
 
         <p>{user.name}</p>

@@ -8,6 +8,7 @@ import { getUser } from "@/lib/actions/getUser";
 import { updateUser } from "@/lib/actions/updateUser";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import ImagePicker from "@/components/ImagePicker";
 
 export default async function EditProfilePage() {
   const user = await getUser();
@@ -26,6 +27,7 @@ export default async function EditProfilePage() {
         </div>
 
         <form action={updateUser}>
+          <ImagePicker name="avatar" label="Change Avatar" />
           <Input
             type="text"
             defaultValue={user.name || ""}
