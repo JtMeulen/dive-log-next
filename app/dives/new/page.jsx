@@ -39,6 +39,7 @@ export default function NewDivePage() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+
     if (mapCoords) {
       formData.append("location_coords", `${mapCoords.lat},${mapCoords.lng}`);
     }
@@ -46,7 +47,7 @@ export default function NewDivePage() {
     const response = await newDiveAction(formData);
 
     if (response?.error) {
-      // TODO: Show error message to user
+      // TODO: Show error message to user by means of a toaster
       console.log(response.error);
       setLoading(false);
     }
@@ -87,12 +88,18 @@ export default function NewDivePage() {
               placeholder="e.g. Saw so many nudibranches!"
             />
             <Input type="date" name="date" label="Date" required />
-            <Input type="number" name="time" label="Dive time (minutes)" />
+            <Input
+              type="number"
+              name="time"
+              label="Dive time (minutes)"
+              min="0"
+            />
             <Input
               type="number"
               step="0.1"
               name="depth"
               label="Depth (meters)"
+              min="0"
             />
             <Textarea
               name="notes"

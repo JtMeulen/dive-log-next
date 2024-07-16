@@ -15,6 +15,7 @@ export default function SignupPage() {
   const formRef = useRef();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [pwNotMatching, setPwNotMatching] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -22,10 +23,16 @@ export default function SignupPage() {
 
     const formData = new FormData(e.target);
 
+    if (formData.get("password") !== formData.get("password-repeat")) {
+      setPwNotMatching(true);
+      setLoading(false);
+      return;
+    }
+
     const response = await signupAction(formData);
 
     if (response?.error) {
-      // TODO: Show error message to user
+      // TODO: Show error message to user by means of toast
       console.log(response.error);
       setLoading(false);
     }
@@ -49,14 +56,15 @@ export default function SignupPage() {
             <Input type="text" name="name" label="Name" required />
             <Input type="email" name="email" label="Email" required />
             <Input type="password" name="password" label="Password" required />
-            {/* <Input
+            <Input
               type="password"
               name="password-repeat"
               label="Password repeat"
               onPaste={(e) => e.preventDefault()}
-              onBlur={verifyRepeatPassword}
+              onFocus={() => setPwNotMatching(false)}
+              errorMessage={pwNotMatching && "Passwords do not match."}
               required
-            /> */}
+            />
 
             <Button type="submit">Sign up</Button>
           </form>

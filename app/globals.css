@@ -20,6 +20,8 @@
   --link-footer-color-hover: #848c9f;
 
   --navlink-color-active: #f3b052;
+
+  --error-color: #d72a2a;
 }
 
 * {

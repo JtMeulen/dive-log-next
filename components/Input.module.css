@@ -14,3 +14,13 @@
   padding: 8px;
   font-size: 1.1rem;
 }
+
+.error {
+  outline: 2px solid var(--error-color);
+}
+
+.errorMessage {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}

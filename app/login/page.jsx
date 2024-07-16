@@ -23,7 +23,7 @@ export default function LoginPage() {
     const formData = new FormData(e.currentTarget);
 
     const res = await signIn("credentials", {
-      email: formData.get("email"),
+      email: formData.get("email").toLowerCase(),
       password: formData.get("password"),
       redirect: false,
     });
