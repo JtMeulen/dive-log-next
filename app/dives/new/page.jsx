@@ -13,7 +13,6 @@ import Textarea from "@/components/Textarea";
 import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
 import Switch from "@/components/Switch";
-import Modal from "@/components/Modal";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 import styles from "./page.module.css";

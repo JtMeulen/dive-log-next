@@ -12,7 +12,7 @@ export default async function ProfilePage() {
   const user = await getUser();
 
   if (user.error) {
-    return redirect("/");
+    return redirect("/login");
   }
 
   return (
