@@ -11,24 +11,6 @@
   width: 100%;
 }
 
-.avatar {
-  border: 4px solid rgb(137, 137, 137);
-  background: linear-gradient(210deg, #98f4fcaf, #11202ebe);
-  border-radius: 50%;
-  width: clamp(5rem, 50vw, 10rem);
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  margin-block: 18px;
-  position: relative;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.avatar img {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: cover !important;
-  position: relative !important;
+.title {
+  text-align: center;
 }

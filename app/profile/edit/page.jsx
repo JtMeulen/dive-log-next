@@ -17,17 +17,14 @@ export default async function EditProfilePage() {
 
   return (
     <main className={styles.main}>
+      <h1 className={styles.title}>Edit your profile details!</h1>
       <div className={styles.content}>
-        <div className={styles.avatar}>
-          <Image
-            src={user.avatar || avatarPlaceholder}
-            alt="Avatar image"
-            fill
-          />
-        </div>
-
         <form action={updateUser}>
-          <ImagePicker name="avatar" label="Change Avatar" />
+          <ImagePicker
+            name="avatar"
+            label="Change Avatar"
+            defaultImage={user.avatar || avatarPlaceholder}
+          />
           <Input
             type="text"
             defaultValue={user.name || ""}
@@ -37,7 +34,11 @@ export default async function EditProfilePage() {
           ></Input>
           <Input
             type="date"
-            defaultValue={user.birthdate ? new Date(user.birthdate)?.toISOString()?.split('T')[0] : ""}
+            defaultValue={
+              user.birthdate
+                ? new Date(user.birthdate)?.toISOString()?.split("T")[0]
+                : ""
+            }
             label="Birthdate"
             name="birthdate"
           ></Input>

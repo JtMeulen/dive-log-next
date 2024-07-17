@@ -12,7 +12,7 @@ import styles from "./Map.module.css";
 // import dynamic from 'next/dynamic'
 // const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 export default function Map({
-  coords = "52.35902777752081,4.811265602195501",
+  coords,
   showDefaultMarker,
   allowChange,
   handleCoordsChange = () => {},
@@ -64,7 +64,7 @@ export default function Map({
   }, [coords, zoom, allowChange, handleCoordsChange, showDefaultMarker]);
 
   const getCoords = (coords) => {
-    return coords.split(",").map((coord) => parseFloat(coord));
+    return (coords || "52.359027,4.811265").split(",").map((coord) => parseFloat(coord));
   };
 
   return (

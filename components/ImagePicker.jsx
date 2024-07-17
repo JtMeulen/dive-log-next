@@ -5,7 +5,7 @@ import { useState } from "react";
 import styles from "./ImagePicker.module.css";
 import Image from "next/image";
 
-export default function Input({ label, name, ...rest }) {
+export default function Input({ label, name, defaultImage, ...rest }) {
   const [imageFile, setImageFile] = useState(null);
 
   const handleImageChange = (e) => {
@@ -38,9 +38,9 @@ export default function Input({ label, name, ...rest }) {
         onChange={handleImageChange}
         {...rest}
       ></input>
-      {imageFile && (
+      {(imageFile || defaultImage) && (
         <div className={styles.imagePreview}>
-          <Image src={imageFile} alt="User selected image" fill />
+          <Image src={imageFile || defaultImage} alt="User selected image" fill />
         </div>
       )}
     </div>

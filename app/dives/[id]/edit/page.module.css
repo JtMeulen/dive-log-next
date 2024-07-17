@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 0;
+  text-align: center;
+}
+
+.modalButtons {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1rem;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 15rem;
+  margin-bottom: 1rem;
+}
