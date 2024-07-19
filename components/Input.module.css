@@ -15,7 +15,12 @@
   font-size: 1.1rem;
 }
 
-.error {
+.description {
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.input:user-invalid, .error {
   outline: 2px solid var(--error-color);
 }
 

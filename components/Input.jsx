@@ -1,6 +1,6 @@
 import styles from "./Input.module.css";
 
-export default function Input({ label, name, errorMessage, ...rest }) {
+export default function Input({ label, name, errorMessage, description, ...rest }) {
   return (
     <div className={styles.inputWrapper}>
       <label htmlFor={name} className={styles.label}>
@@ -10,8 +10,12 @@ export default function Input({ label, name, errorMessage, ...rest }) {
         id={name}
         name={name}
         className={`${styles.input} ${errorMessage && styles.error}`}
+        ariaDescribedby={description && `${name}-description`}
         {...rest}
       ></input>
+      {description && (
+        <em id={`${name}-description`} className={styles.description}>{description}</em>
+      )}
       {errorMessage && (
         <span className={styles.errorMessage}>{errorMessage}</span>
       )}

@@ -10,7 +10,7 @@ import Button from "@/components/Button";
 import { signupAction } from "@/lib/actions/signup";
 import Loader from "@/components/Loader";
 
-import { passwordPattern } from "@/utils/validation/patterns";
+import { passwordPattern, emailPattern } from "@/utils/validation/patterns";
 
 import styles from "./page.module.css";
 
@@ -28,7 +28,7 @@ export default function SignupPage() {
 
     if (formData.get("password") !== formData.get("password-repeat")) {
       setPwNotMatching(true);
-      toast.error('Passwords do not match.');
+      toast.error("Passwords do not match.");
       setLoading(false);
       return;
     }
@@ -59,12 +59,19 @@ export default function SignupPage() {
         className={`${loading && styles.hide}`}
       >
         <Input type="text" name="name" label="Name" required />
-        <Input type="email" name="email" label="Email" required />
+        <Input
+          type="email"
+          name="email"
+          label="Email"
+          pattern={emailPattern}
+          required
+        />
         <Input
           type="password"
           name="password"
           label="Password"
           pattern={passwordPattern}
+          description="Min 8 chars: 1 uppercase, 1 lowercase, 1 number, 1 special character."
           required
         />
         <Input
