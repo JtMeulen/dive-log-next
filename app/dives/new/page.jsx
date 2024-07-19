@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 import { newDiveAction } from "@/lib/actions/newDive";
 
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Textarea from "@/components/Textarea";
@@ -15,6 +16,8 @@ import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
 import Switch from "@/components/Switch";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
+
+import lottieConfetti from "@/public/confetti.lottie";
 
 import styles from "./page.module.css";
 
@@ -24,6 +27,7 @@ export default function NewDivePage() {
   const formRef = useRef();
   const [loading, setLoading] = useState(false);
   const [mapCoords, setMapCoords] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   if (status === "unauthenticated") {
     router.push("/login");
@@ -53,7 +57,7 @@ export default function NewDivePage() {
 
     if (response?.dive) {
       formRef.current?.reset();
-      toast.success("Dive logged! 🐠")
+      toast.success("Dive logged! 🐠");
       router.push("/dives");
     }
   };
@@ -107,7 +111,11 @@ export default function NewDivePage() {
               label="Notes"
               placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
             />
-            <Switch name="seen_nudibranch" label="Seen any nudibranches?" />
+            <Switch
+              name="seen_nudibranch"
+              label="Seen any nudibranches?"
+              onChange={() => setShowConfetti(true)}
+            />
 
             <ImagePicker name="image" label="Image" />
 
@@ -118,6 +126,14 @@ export default function NewDivePage() {
             <Button type="submit">Log dive!</Button>
           </form>
         </>
+      )}
+      {showConfetti && (
+        <div className={styles.lottieContainer}>
+          <div className={styles.inner}>
+            <DotLottieReact autoplay src={lottieConfetti} autoResizeCanvas={false}/>
+
+          </div>
+        </div>
       )}
     </main>
   );
