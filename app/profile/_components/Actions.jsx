@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import { deleteUser } from "@/lib/actions/deleteUser";
+import { debug_db_populate } from "@/lib/db/debug/populate_dummy";
 import Button from "@/components/Button";
 import ButtonLink from "@/components/ButtonLink";
 import Modal from "@/components/Modal";
@@ -48,6 +49,18 @@ export default function Actions() {
         <Button variant="danger" onClick={() => setShowModal(true)}>
           Delete Account
         </Button>
+
+        {/* FOR TESTING PURPOSES ONLY */}
+        {process.env.NODE_ENV === "development" && (
+          <Button
+            variant="danger"
+            onClick={async () => {
+              await debug_db_populate();
+            }}
+          >
+            Populate Dummy Data
+          </Button>
+        )}
       </div>
 
       {/* Confirm modal for delete action */}

@@ -24,8 +24,6 @@ export default function DivePage({ params }) {
   const { id } = params;
 
   const handleDeleteDive = async () => {
-    // TODO: Add modal for confirmation here
-
     const response = await deleteDive(id);
 
     if (response?.error) {
