@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "./DiveTile.module.css";
-
 import imgPlaceholder from "@/public/dive_img_placeholder.jpg";
 import nudiStamp from "@/public/nudi_stamp.png";
+
+import styles from "./DiveTile.module.css";
 
 export default function DiveTile({ dive }) {
   return (
@@ -14,7 +14,11 @@ export default function DiveTile({ dive }) {
           <Image src={dive.image || imgPlaceholder} alt={dive.title} fill />
         </header>
         {dive.seen_nudibranch && (
-          <Image src={nudiStamp} alt="Nudibranch seen stamp" className={styles.nudiStamp}/>
+          <Image
+            src={nudiStamp}
+            alt="Nudibranch seen stamp"
+            className={styles.nudiStamp}
+          />
         )}
         <section className={styles.content}>
           <h3 className={styles.title}>{dive.title}</h3>

@@ -17,6 +17,7 @@ import Switch from "@/components/Switch";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 import styles from "./page.module.css";
+import toast from "react-hot-toast";
 
 export default function EditDivePage({ params }) {
   const { id } = params;
@@ -40,6 +41,7 @@ export default function EditDivePage({ params }) {
       setMapCoords(data.location_coords);
     }
     fetchDive();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (status === "unauthenticated") {
@@ -65,21 +67,21 @@ export default function EditDivePage({ params }) {
     const response = await updateDive(formData, id);
 
     if (response?.error) {
-      // TODO: Show error message to user by means of a toaster
-      console.log(response.error);
+      toast.error(response.error);
       setLoading(false);
     }
 
     if (response?.dive) {
       formRef.current?.reset();
       router.push(`/dives/${id}`);
+      toast.success("Dive updated! 🎉");
     }
   };
 
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Edit your dive!</h1>
-
+      {/* TODO: loading state should not reset form data (just hide the form instead of not rendering) */}
       {loading || status === "loading" || !defaultData.dive ? (
         <Loader />
       ) : (

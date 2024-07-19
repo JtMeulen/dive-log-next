@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 
 import { newDiveAction } from "@/lib/actions/newDive";
 
@@ -46,13 +47,13 @@ export default function NewDivePage() {
     const response = await newDiveAction(formData);
 
     if (response?.error) {
-      // TODO: Show error message to user by means of a toaster
-      console.log(response.error);
+      toast.error(response.error);
       setLoading(false);
     }
 
     if (response?.dive) {
       formRef.current?.reset();
+      toast.success("Dive logged! 🐠")
       router.push("/dives");
     }
   };
@@ -61,6 +62,7 @@ export default function NewDivePage() {
     <main className={styles.main}>
       <h1 className={styles.title}>Log a new dive!</h1>
 
+      {/* TODO: hide form instead of not rendering to preserve data */}
       {loading || status === "loading" ? (
         <Loader />
       ) : (

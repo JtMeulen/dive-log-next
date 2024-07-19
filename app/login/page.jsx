@@ -4,12 +4,13 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-import styles from "./page.module.css";
+import toast from "react-hot-toast";
 
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
+
+import styles from "./page.module.css";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -29,12 +30,13 @@ export default function LoginPage() {
     });
 
     if (res?.error) {
-      console.log("Error:", res.error);
+      toast.error(res.error);
       setLoading(false);
     }
 
     if (res?.ok) {
       formRef.current?.reset();
+      toast.success("Welcome back! 👋");
       router.push("/dives");
     }
   };

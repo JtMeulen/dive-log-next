@@ -35,3 +35,15 @@
   margin-top: .2rem;
   font-size: 1.3rem;
 }
+
+.modalText {
+  margin-top: 0;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 1rem;
+}

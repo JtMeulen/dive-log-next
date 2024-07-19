@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 import Input from "@/components/Input";
 import Button from "@/components/Button";
@@ -27,6 +28,7 @@ export default function SignupPage() {
 
     if (formData.get("password") !== formData.get("password-repeat")) {
       setPwNotMatching(true);
+      toast.error('Passwords do not match.');
       setLoading(false);
       return;
     }
@@ -34,14 +36,13 @@ export default function SignupPage() {
     const response = await signupAction(formData);
 
     if (response?.error) {
-      // TODO: Show error message to user by means of toast
-      console.log(response.error);
+      toast.error(response.error);
       setLoading(false);
     }
 
     if (response?.user) {
       formRef.current?.reset();
-      // TODO: Signin automatically here too using signIn from next-auth?
+      toast.success("Welcome to ScubiBranches! 🎉");
       router.push("/login");
     }
   };

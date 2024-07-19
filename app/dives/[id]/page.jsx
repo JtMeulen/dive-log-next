@@ -4,29 +4,35 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 
 import { getDive } from "@/lib/actions/getDive";
 import { deleteDive } from "@/lib/actions/deleteDive";
 
 import ButtonLink from "@/components/ButtonLink";
 import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import Loader from "@/components/Loader";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 import styles from "./page.module.css";
-import Loader from "@/components/Loader";
 
 export default function DivePage({ params }) {
   const [data, setData] = useState({});
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const { id } = params;
 
   const handleDeleteDive = async () => {
+    // TODO: Add modal for confirmation here
+
     const response = await deleteDive(id);
 
     if (response?.error) {
-      console.log(response.error);
+      toast.error(response.error);
     } else {
       router.push("/dives");
+      toast.success("Dive deleted! 🗑️");
     }
   };
 
@@ -41,10 +47,12 @@ export default function DivePage({ params }) {
       setData(data);
     }
     fetchDive();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (data.error) {
-    <p>ERROORR</p>
+    toast.error(data.error);
+    return <p>Something went wrong!</p>;
   }
 
   const dive = data?.dive;
@@ -87,10 +95,25 @@ export default function DivePage({ params }) {
         <ButtonLink href={`/dives/${id}/edit`} variant="primary">
           Edit this dive
         </ButtonLink>
-        <Button variant="secondary" onClick={handleDeleteDive}>
+        <Button variant="secondary" onClick={() => setShowModal(true)}>
           Delete this dive
         </Button>
       </main>
+
+      {/* Confirm modal for delete action */}
+      <Modal show={showModal} closeButtonHandler={() => setShowModal(false)}>
+        <p className={styles.modalText}>
+          Are you sure you want to delete this dive?
+        </p>
+        <div className={styles.modalButtons}>
+          <Button variant="danger" onClick={handleDeleteDive}>
+            Yes, delete this dive
+          </Button>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 }

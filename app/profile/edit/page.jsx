@@ -1,14 +1,15 @@
 "use server";
 
-import Image from "next/image";
-
-import styles from "./page.module.css";
-import avatarPlaceholder from "@/public/avatar_placeholder.png";
 import { getUser } from "@/lib/actions/getUser";
 import { updateUser } from "@/lib/actions/updateUser";
+
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import ImagePicker from "@/components/ImagePicker";
+
+import avatarPlaceholder from "@/public/avatar_placeholder.png";
+
+import styles from "./page.module.css";
 
 export default async function EditProfilePage() {
   const user = await getUser();

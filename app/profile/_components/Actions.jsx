@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 import { deleteUser } from "@/lib/actions/deleteUser";
 import Button from "@/components/Button";
 import ButtonLink from "@/components/ButtonLink";
-import styles from "./page.module.css";
 import Modal from "@/components/Modal";
+
+import styles from "./page.module.css";
 
 export default function Actions() {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +32,7 @@ export default function Actions() {
       await signOut();
       router.push("/");
     } else {
-      console.log(response.error);
+      toast.error(response.error);
     }
   };
 
