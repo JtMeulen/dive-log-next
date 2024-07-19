@@ -8,6 +8,10 @@
   margin-top: 0;
 }
 
+.hide {
+  display: none;
+}
+
 .link {
   text-align: center;
   font-size: 1.3rem;

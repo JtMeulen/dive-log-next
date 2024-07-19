@@ -4,12 +4,14 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import styles from "./page.module.css";
-
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { signupAction } from "@/lib/actions/signup";
 import Loader from "@/components/Loader";
+
+import { passwordPattern } from "@/utils/validation/patterns";
+
+import styles from "./page.module.css";
 
 export default function SignupPage() {
   const formRef = useRef();
@@ -48,32 +50,38 @@ export default function SignupPage() {
     <main className={styles.main}>
       <h1>Sign up</h1>
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <form onSubmit={handleSignup} ref={formRef}>
-            <Input type="text" name="name" label="Name" required />
-            <Input type="email" name="email" label="Email" required />
-            <Input type="password" name="password" label="Password" required />
-            <Input
-              type="password"
-              name="password-repeat"
-              label="Password repeat"
-              onPaste={(e) => e.preventDefault()}
-              onFocus={() => setPwNotMatching(false)}
-              errorMessage={pwNotMatching && "Passwords do not match."}
-              required
-            />
+      {loading && <Loader />}
 
-            <Button type="submit">Sign up</Button>
-          </form>
+      <form
+        onSubmit={handleSignup}
+        ref={formRef}
+        className={`${loading && styles.hide}`}
+      >
+        <Input type="text" name="name" label="Name" required />
+        <Input type="email" name="email" label="Email" required />
+        <Input
+          type="password"
+          name="password"
+          label="Password"
+          pattern={passwordPattern}
+          required
+        />
+        <Input
+          type="password"
+          name="password-repeat"
+          label="Password repeat"
+          onPaste={(e) => e.preventDefault()}
+          onFocus={() => setPwNotMatching(false)}
+          errorMessage={pwNotMatching && "Passwords do not match."}
+          required
+        />
 
-          <p className={styles.link}>
-            Already a member? <Link href="/login">Login</Link> instead.
-          </p>
-        </>
-      )}
+        <Button type="submit">Sign up</Button>
+      </form>
+
+      <p className={`${styles.link} ${loading && styles.hide}`}>
+        Already a member? <Link href="/login">Login</Link> instead.
+      </p>
     </main>
   );
 }

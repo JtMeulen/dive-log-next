@@ -42,21 +42,22 @@ export default function LoginPage() {
   return (
     <main className={styles.main}>
       <h1>Login</h1>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <form onSubmit={handleSubmit} ref={formRef}>
-            <Input type="email" name="email" label="Email" required />
-            <Input type="password" name="password" label="Password" required />
-            <Button type="submit">Login</Button>
-          </form>
+      {loading && <Loader />}
+      <>
+        <form
+          onSubmit={handleSubmit}
+          ref={formRef}
+          className={`${loading && styles.hide}`}
+        >
+          <Input type="email" name="email" label="Email" required />
+          <Input type="password" name="password" label="Password" required />
+          <Button type="submit">Login</Button>
+        </form>
 
-          <p className={styles.link}>
-            Not a member yet? <Link href="/signup">Sign up</Link> instead!
-          </p>
-        </>
-      )}
+        <p className={`${styles.link} ${loading && styles.hide}`}>
+          Not a member yet? <Link href="/signup">Sign up</Link> instead!
+        </p>
+      </>
     </main>
   );
 }
