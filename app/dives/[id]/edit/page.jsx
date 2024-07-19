@@ -144,6 +144,7 @@ export default function EditDivePage({ params }) {
 
             <ImagePicker name="image" label="Image" defaultImage={defaultData.dive.image} />
 
+            <label className={styles.mapLabel}>Map location</label>
             <div className={styles.mapContainer}>
               <Map
                 allowChange

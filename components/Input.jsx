@@ -10,7 +10,7 @@ export default function Input({ label, name, errorMessage, description, ...rest 
         id={name}
         name={name}
         className={`${styles.input} ${errorMessage && styles.error}`}
-        ariaDescribedby={description && `${name}-description`}
+        aria-describedby={description && `${name}-description`}
         {...rest}
       ></input>
       {description && (

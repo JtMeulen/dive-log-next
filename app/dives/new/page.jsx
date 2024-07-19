@@ -119,6 +119,7 @@ export default function NewDivePage() {
 
             <ImagePicker name="image" label="Image" />
 
+            <label className={styles.mapLabel}>Map location</label>
             <div className={styles.mapContainer}>
               <Map allowChange handleCoordsChange={onCoordsChange} />
             </div>

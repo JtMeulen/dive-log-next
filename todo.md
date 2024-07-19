@@ -16,3 +16,5 @@
   - Sanitize input
 - About page update
 - Readme fixing
+- Image picker to handle enter key on focus
+- Add dive school to DB?

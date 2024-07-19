@@ -25,24 +25,38 @@ export default function Input({ label, name, defaultImage, ...rest }) {
     fileReader.readAsDataURL(file);
   };
 
+  const hasImage = imageFile || defaultImage;
+
   return (
     <div className={styles.inputWrapper}>
       <label htmlFor={name} className={styles.label}>
         {label}
+
+        <div
+          className={`${styles.imagePreview} ${hasImage && styles.hasImage}`}
+          tabIndex={0}
+        >
+          {hasImage && (
+            <Image
+              src={imageFile || defaultImage}
+              alt="User selected image"
+              fill
+            />
+          )}
+
+          <span>+</span>
+          <span>Click here to select an image</span>
+        </div>
       </label>
       <input
         type="file"
         accept="image/png, image/jpeg, image/jpg, image/heic, image/heif"
         name={name}
+        id={name}
         className={styles.input}
         onChange={handleImageChange}
         {...rest}
       ></input>
-      {(imageFile || defaultImage) && (
-        <div className={styles.imagePreview}>
-          <Image src={imageFile || defaultImage} alt="User selected image" fill />
-        </div>
-      )}
     </div>
   );
 }
