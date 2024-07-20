@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -11,11 +11,21 @@ import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 
 import styles from "./page.module.css";
+import Divider from "@/components/Divider";
 
 export default function LoginPage() {
+  const { status } = useSession();
   const router = useRouter();
   const formRef = useRef();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dives");
+    } else if (status === "unauthenticated") {
+      setLoading(false);
+    }
+  }, [status, router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +64,19 @@ export default function LoginPage() {
           <Input type="email" name="email" label="Email" required />
           <Input type="password" name="password" label="Password" required />
           <Button type="submit">Login</Button>
+
+          <Divider>or</Divider>
+
+          <Button
+            type="button"
+            onClick={() => {
+              setLoading(true);
+              signIn("google", { callbackUrl: "/dives" });
+            }}
+            variant="google"
+          >
+            Sign in with Google
+          </Button>
         </form>
 
         <p className={`${styles.link} ${loading && styles.hide}`}>

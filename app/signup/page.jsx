@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import Input from "@/components/Input";
@@ -14,12 +14,22 @@ import Loader from "@/components/Loader";
 import { passwordPattern, emailPattern } from "@/utils/validation/patterns";
 
 import styles from "./page.module.css";
+import Divider from "@/components/Divider";
 
 export default function SignupPage() {
+  const { status } = useSession();
   const formRef = useRef();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [pwNotMatching, setPwNotMatching] = useState(false);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/dives");
+    } else if (status === "unauthenticated") {
+      setLoading(false);
+    }
+  }, [status, router]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -93,10 +103,17 @@ export default function SignupPage() {
 
         <Button type="submit">Sign up</Button>
 
-        <hr />
+        <Divider>or</Divider>
 
-        <Button type="button" onClick={() => signIn("google")} variant="google">
-          Or Sign up with Google
+        <Button
+          type="button"
+          onClick={() => {
+            setLoading(true);
+            signIn("google", { callbackUrl: "/dives" });
+          }}
+          variant="google"
+        >
+          Sign up with Google
         </Button>
       </form>
 
