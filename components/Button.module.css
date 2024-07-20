@@ -47,3 +47,15 @@
 .danger:active {
   background: #8a2a2f;
 }
+
+.google {
+  background: white;
+  border: 1px solid #1F1F1F;
+  color: #1F1F1F;
+  font-family: 'Roboto Medium', sans-serif;
+  font-size: 14px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

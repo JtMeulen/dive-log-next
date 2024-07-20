@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 
 import Input from "@/components/Input";
@@ -41,9 +42,15 @@ export default function SignupPage() {
     }
 
     if (response?.user) {
-      formRef.current?.reset();
+      await signIn("credentials", {
+        email: response.user.email,
+        password: formData.get("password"),
+        redirect: false,
+      });
+
       toast.success("Welcome to ScubiBranches! 🎉");
-      router.push("/login");
+      formRef.current?.reset();
+      router.push("/dives");
     }
   };
 
@@ -85,6 +92,12 @@ export default function SignupPage() {
         />
 
         <Button type="submit">Sign up</Button>
+
+        <hr />
+
+        <Button type="button" onClick={() => signIn("google")} variant="google">
+          Or Sign up with Google
+        </Button>
       </form>
 
       <p className={`${styles.link} ${loading && styles.hide}`}>
