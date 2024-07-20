@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 export const metadata = {
   title: "ScubiBranches",
   description: "Your favorite nudibranch dive log!",
+  manifest : "/manifest.json",
 };
 
 export default function RootLayout({ children }) {
