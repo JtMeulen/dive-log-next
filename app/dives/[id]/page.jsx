@@ -13,7 +13,10 @@ import ButtonLink from "@/components/ButtonLink";
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
 import Loader from "@/components/Loader";
+import Divider from "@/components/Divider";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
+
+import logo from "@/public/logo.png";
 
 import styles from "./page.module.css";
 
@@ -60,11 +63,9 @@ export default function DivePage({ params }) {
   ) : (
     <>
       <main className={styles.main}>
-        {dive.image && (
-          <div className={styles.imageWrapper}>
-            <Image src={dive.image} alt={dive.title} fill />
-          </div>
-        )}
+        <div className={styles.imageWrapper}>
+          <Image src={dive.image || logo} alt={dive.title} fill />
+        </div>
 
         {dive.location_coords && (
           <div className={styles.mapContainer}>
@@ -73,29 +74,48 @@ export default function DivePage({ params }) {
         )}
 
         <section className={styles.content}>
-          <h1>{dive.title}</h1>
-          <p>{dive.date?.toDateString()}</p>
-          <p>{dive.location}</p>
+          <h1 className={styles.title}>{dive.title}</h1>
+          <p className={styles.date}>
+            <em>{dive.date?.toDateString()}</em>
+          </p>
+          <p className={styles.location}>{dive.location}</p>
+
           <p>{dive.description}</p>
-          <p>Depth: {dive.depth}m</p>
-          <p>Dive time: {dive.time}mins</p>
-          <p>Nudibranch seen: {dive.seen_nudibranch ? "Yes!" : "No :("}</p>
+
+          <Divider>stats</Divider>
+          <ul className={styles.stats}>
+            {dive.depth && (
+              <li>
+                <strong>Depth:</strong> {dive.depth}m
+              </li>
+            )}
+            {dive.time && (
+              <li>
+                <strong>Dive time:</strong> {dive.time}mins
+              </li>
+            )}
+            <li>
+              <strong>Nudibranch seen:</strong>{" "}
+              {dive.seen_nudibranch ? "Yes!" : "No :("}
+            </li>
+          </ul>
+
           {dive.notes && (
             <>
-              <p className={styles.label}>
-                <em>Notes:</em>
-              </p>
+              <Divider className={styles.divider}>notes</Divider>
               <pre className={styles.notes}>{dive.notes}</pre>
             </>
           )}
         </section>
 
-        <ButtonLink href={`/dives/${id}/edit`} variant="primary">
-          Edit this dive
-        </ButtonLink>
-        <Button variant="secondary" onClick={() => setShowModal(true)}>
-          Delete this dive
-        </Button>
+        <div className={styles.actions}>
+          <ButtonLink href={`/dives/${id}/edit`} variant="primary">
+            Edit this dive
+          </ButtonLink>
+          <Button variant="danger" onClick={() => setShowModal(true)}>
+            Delete this dive
+          </Button>
+        </div>
       </main>
 
       {/* Confirm modal for delete action */}

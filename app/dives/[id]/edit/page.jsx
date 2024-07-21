@@ -50,7 +50,6 @@ export default function EditDivePage({ params }) {
   }
 
   const onCoordsChange = (coords) => {
-    // TODO: this seems a bit buggy, and sometimes saves as null
     setMapCoords(coords);
   };
 

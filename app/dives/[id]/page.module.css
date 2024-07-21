@@ -1,14 +1,22 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  grid-template-areas: 
+    "image"
+    "content"
+    "map"
+    "actions"
+  ;
+  gap: 1rem
 }
 
 .imageWrapper {
+  grid-area: image;
   position: relative;
-  width: 100%;
-  max-width: 900px;
   aspect-ratio: 16/9;
+  align-self: center;
+  max-width: 800px;
 }
 
 .imageWrapper img {
@@ -17,23 +25,52 @@
 }
 
 .mapContainer {
-  width: 100%;
+  grid-area: map;
   height: 20rem;
   margin-bottom: 1rem;
+  align-self: center;
+  max-width: 800px;
 }
 
 .content {
-  width: 100%;
+  grid-area: content;
+  max-width: 800px;
 }
 
-.label {
-  font-size: 1rem;
+.title {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.date {
+  font-size: 1.2rem;
   margin: 0;
 }
 
-.notes {
-  margin-top: .2rem;
+.location {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.stats {
+  padding: 0;
+  margin: 0 0 2rem;
+  list-style-position: inside;
   font-size: 1.3rem;
+}
+
+.notes {
+  margin: 0 0 2rem;
+  font-size: 1.3rem;
+  text-wrap: wrap;
+}
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-end;
 }
 
 .modalText {
@@ -46,4 +83,23 @@
   flex-wrap: wrap;
   width: 100%;
   gap: 1rem;
+}
+
+.divider {
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .main {
+    grid-template-columns: min(40%, 800px) auto;
+    grid-template-areas: 
+      "image content"
+      "map content"
+      ". actions"
+    ;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
 }
