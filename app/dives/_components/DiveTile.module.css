@@ -6,19 +6,18 @@
   color: unset;
 }
 
-/* TODO: turn the tile into a grid */
-/* Image should swap to the left on small viewports */
 .tile {
   border-radius: 12px;
   box-shadow: var(--container-box-shadow);
   background: var(--container-background);
   overflow: hidden;
   position: relative;
+  display: flex;
 }
 
 .imageWrapper {
   position: relative;
-  height: 12rem;
+  width: 20%;
 }
 
 .imageWrapper img {
@@ -29,12 +28,13 @@
   position: absolute;
   right: 2px;
   top: 2px;
-  transform: rotate(12deg);
+  transform: rotate(12deg) scale(.7);
   opacity: .8;
 }
 
 .content {
   padding: .5rem;
+  max-width: 80%;
 }
 
 .title {
@@ -63,3 +63,21 @@
   font-size: .9rem;
 }
 
+@media (min-width: 786px) {
+  .tile {
+    flex-direction: column;
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 12rem;
+  }
+
+  .content {
+    max-width: initial;
+  }
+
+  .nudiStamp {
+    transform: rotate(12deg) scale(1);
+  }
+}
