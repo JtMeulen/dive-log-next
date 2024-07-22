@@ -28,8 +28,8 @@ export default function DiveTile({ dive }) {
           <p className={styles.date}>{dive.date?.toDateString()}</p>
           <p className={styles.description}>{dive.description}</p>
           <div className={styles.stats}>
-            <span>Max depth: {dive.depth}</span>
-            <span>Time: {dive.time}</span>
+            {dive.depth && <span>Max depth: {dive.depth}m</span>}
+            {dive.time && <span>Time: {dive.time}min</span>}
           </div>
         </section>
       </article>

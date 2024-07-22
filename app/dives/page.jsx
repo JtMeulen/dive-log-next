@@ -29,8 +29,7 @@ export default async function DivesPage() {
   // And exclude dives in the future (as they can be added with a future date)
   const timeSinceLastDive = dives.length
     ? Math.round(
-        (Date.now() - new Date(dives[totalDives - 1].date).getTime()) /
-          (1000 * 60 * 60 * 24)
+        (Date.now() - new Date(dives[0].date).getTime()) / (1000 * 60 * 60 * 24)
       )
     : 0;
 
@@ -43,14 +42,32 @@ export default async function DivesPage() {
 
       <article className={styles.overview}>
         <h3>Totals</h3>
-        <p>Logged dives: {totalDives}</p>
-        <p>Dive time: {totalTime}mins</p>
-        <p>Average depth: {averageDepth}m</p>
-        <p>
-          Dives with nudibrances:{" "}
-          {dives.filter((dive) => dive.seen_nudibranch).length}
-        </p>
-        <p>Days since last dive: {timeSinceLastDive}</p>
+        <table>
+          <tbody>
+            <tr>
+              <td>Logged dives:</td>
+              <td>{totalDives}</td>
+            </tr>
+            <tr>
+              <td>Dive time:</td>
+              <td>{totalTime}mins</td>
+            </tr>
+            <tr>
+              <td>Average depth:</td>
+              <td>{averageDepth}m</td>
+            </tr>
+            <tr>
+              <td>Nudibranch Dives:</td>
+              <td>
+                {dives.filter((dive) => dive.seen_nudibranch).length}
+              </td>
+            </tr>
+            <tr>
+              <td>Days since last dive:</td>
+              <td>{timeSinceLastDive}</td>
+            </tr>
+          </tbody>
+        </table>
       </article>
 
       {dives.length === 0 ? (

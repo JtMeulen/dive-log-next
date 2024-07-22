@@ -34,7 +34,7 @@
 
 .content {
   padding: .5rem;
-  max-width: 80%;
+  width: 80%;
 }
 
 .title {
@@ -74,7 +74,7 @@
   }
 
   .content {
-    max-width: initial;
+    width: 100%;
   }
 
   .nudiStamp {
