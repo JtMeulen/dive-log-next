@@ -1,19 +1,10 @@
-- General
-  - Protect pages based on auth
-  - Add error.tsx page
-  - use Suspense to load data
-  - form validation new dive, login, signup, edit profile
-  - Image upload protection
-    - Size
-    - Content?
-- Profile page
-  - Edit user data form
-    - Styling
-- Dives
-  - Create dive page
-- New dive form
-  - Styling of date input field
-  - Sanitize input
+- Protect pages based on auth
+- Add error.tsx page
+- use Suspense to load data?
+- Image upload protection
+  - Size
+  - Content?
+- Styling of date input field
 - About page update
 - Readme fixing
 - Image picker to handle enter key on focus
