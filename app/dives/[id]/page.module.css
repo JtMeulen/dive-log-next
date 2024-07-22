@@ -2,6 +2,7 @@
   display: grid;
   justify-content: center;
   width: 100%;
+  grid-template-columns: 1fr;
   grid-template-areas: 
     "image"
     "content"
@@ -91,7 +92,7 @@
 
 @media (min-width: 768px) {
   .main {
-    grid-template-columns: min(40%, 800px) auto;
+    grid-template-columns: min(35%, 800px) min(55%, 800px);
     grid-template-areas: 
       "image content"
       "map content"
