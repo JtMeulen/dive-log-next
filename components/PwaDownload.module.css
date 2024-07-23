@@ -1,0 +1,5 @@
+@media (display-mode: standalone) {
+  .section {
+    display: none;
+  }
+}
