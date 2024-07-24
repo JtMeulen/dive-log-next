@@ -26,9 +26,10 @@ export default function DiveTile({ dive }) {
             <em>{dive.location}</em>
           </p>
           <p className={styles.date}>
-            {dive.date?.toLocaleString([], {
+            {dive.date && new Date(dive.date).toLocaleString([], {
               dateStyle: "long",
               timeStyle: "short",
+              hourCycle: "h24",
             })}
           </p>
           <p className={styles.description}>{dive.description}</p>

@@ -77,10 +77,12 @@ export default function DivePage({ params }) {
           <h1 className={styles.title}>{dive.title}</h1>
           <p className={styles.date}>
             <em>
-              {dive.date?.toLocaleString([], {
-                dateStyle: "full",
-                timeStyle: "short",
-              })}
+              {dive.date &&
+                new Date(dive.date).toLocaleString([], {
+                  dateStyle: "full",
+                  timeStyle: "short",
+                  hourCycle: "h24",
+                })}
             </em>
           </p>
           <p className={styles.location}>{dive.location}</p>
