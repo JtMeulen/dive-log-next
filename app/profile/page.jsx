@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
 import Actions from "./_components/Actions";
+import BirthDate from "./_components/BirthDate";
 import { getUser } from "@/lib/actions/getUser";
 import { redirect } from "next/navigation";
 
@@ -24,9 +25,7 @@ export default async function ProfilePage() {
 
         <p>{user.name}</p>
         <p className={styles.email}>{user.email}</p>
-        {user.birthdate && (
-          <p>Date of birth: {new Date(user.birthdate).toLocaleDateString('en-GB')}</p>
-        )}
+        <BirthDate birthdate={user.birthdate} /> 
 
         <Actions />
       </div>
