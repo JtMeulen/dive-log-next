@@ -76,7 +76,12 @@ export default function DivePage({ params }) {
         <section className={styles.content}>
           <h1 className={styles.title}>{dive.title}</h1>
           <p className={styles.date}>
-            <em>{dive.date?.toDateString()}</em>
+            <em>
+              {dive.date?.toLocaleString([], {
+                dateStyle: "full",
+                timeStyle: "short",
+              })}
+            </em>
           </p>
           <p className={styles.location}>{dive.location}</p>
 

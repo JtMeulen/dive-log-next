@@ -15,6 +15,7 @@ import Textarea from "@/components/Textarea";
 import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
 import Switch from "@/components/Switch";
+import InputDatePicker from "@/components/InputDatePicker";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 import lottieConfetti from "@/public/confetti.lottie";
@@ -92,7 +93,12 @@ export default function NewDivePage() {
               max="80"
               placeholder="e.g. Saw so many nudibranches!"
             />
-            <Input type="date" name="date" label="Date" required />
+            <InputDatePicker
+              name="date"
+              label="Date and time"
+              withTime
+              required
+            />
             <Input
               type="number"
               name="time"
@@ -131,8 +137,11 @@ export default function NewDivePage() {
       {showConfetti && (
         <div className={styles.lottieContainer}>
           <div className={styles.inner}>
-            <DotLottieReact autoplay src={lottieConfetti} autoResizeCanvas={false}/>
-
+            <DotLottieReact
+              autoplay
+              src={lottieConfetti}
+              autoResizeCanvas={false}
+            />
           </div>
         </div>
       )}

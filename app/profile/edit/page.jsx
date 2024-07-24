@@ -6,6 +6,7 @@ import { updateUser } from "@/lib/actions/updateUser";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import ImagePicker from "@/components/ImagePicker";
+import InputDatePicker from "@/components/InputDatePicker";
 
 import avatarPlaceholder from "@/public/avatar_placeholder.png";
 
@@ -33,16 +34,12 @@ export default async function EditProfilePage() {
             name="name"
             required
           ></Input>
-          <Input
-            type="date"
-            defaultValue={
-              user.birthdate
-                ? new Date(user.birthdate)?.toISOString()?.split("T")[0]
-                : ""
-            }
+          <InputDatePicker
             label="Birthdate"
             name="birthdate"
-          ></Input>
+            defaultValue={user.birthdate}
+            maxDate={new Date()}
+          />
 
           <Button>Save</Button>
         </form>

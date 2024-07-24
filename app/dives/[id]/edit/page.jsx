@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
-
+import toast from "react-hot-toast";
 import { getDive } from "@/lib/actions/getDive";
 import { updateDive } from "@/lib/actions/updateDive";
 
@@ -14,10 +14,10 @@ import Textarea from "@/components/Textarea";
 import ImagePicker from "@/components/ImagePicker";
 import Loader from "@/components/Loader";
 import Switch from "@/components/Switch";
+import InputDatePicker from "@/components/InputDatePicker";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 import styles from "./page.module.css";
-import toast from "react-hot-toast";
 
 export default function EditDivePage({ params }) {
   const { id } = params;
@@ -41,7 +41,7 @@ export default function EditDivePage({ params }) {
       setMapCoords(data.location_coords);
     }
     fetchDive();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (status === "unauthenticated") {
@@ -109,12 +109,12 @@ export default function EditDivePage({ params }) {
               placeholder="e.g. Saw so many nudibranches!"
               defaultValue={defaultData.dive.description}
             />
-            <Input
-              type="date"
+            <InputDatePicker
               name="date"
-              label="Date"
+              label="Date and time"
+              defaultValue={defaultData.dive.date}
               required
-              defaultValue={defaultData.dive.date ? new Date(defaultData.dive.date)?.toISOString()?.split('T')[0] : ""}
+              withTime
             />
             <Input
               type="number"
@@ -137,11 +137,17 @@ export default function EditDivePage({ params }) {
               placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
               defaultValue={defaultData.dive.notes}
             />
-            <Switch name="seen_nudibranch" label="Seen any nudibranches?" 
+            <Switch
+              name="seen_nudibranch"
+              label="Seen any nudibranches?"
               defaultChecked={defaultData.dive.seen_nudibranch}
             />
 
-            <ImagePicker name="image" label="Image" defaultImage={defaultData.dive.image} />
+            <ImagePicker
+              name="image"
+              label="Image"
+              defaultImage={defaultData.dive.image}
+            />
 
             <label className={styles.mapLabel}>Map location</label>
             <div className={styles.mapContainer}>
@@ -153,7 +159,7 @@ export default function EditDivePage({ params }) {
               />
             </div>
 
-            <Button type="submit">Edit dive!</Button>
+            <Button type="submit">Save</Button>
           </form>
         </>
       )}

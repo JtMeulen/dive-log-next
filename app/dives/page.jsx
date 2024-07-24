@@ -40,36 +40,6 @@ export default async function DivesPage() {
         <p>Here you can find all the dives you have logged.</p>
       </header>
 
-      <article className={styles.overview}>
-        <h3>Totals</h3>
-        <table>
-          <tbody>
-            <tr>
-              <td>Logged dives:</td>
-              <td>{totalDives}</td>
-            </tr>
-            <tr>
-              <td>Dive time:</td>
-              <td>{totalTime}mins</td>
-            </tr>
-            <tr>
-              <td>Average depth:</td>
-              <td>{averageDepth}m</td>
-            </tr>
-            <tr>
-              <td>Nudibranch Dives:</td>
-              <td>
-                {dives.filter((dive) => dive.seen_nudibranch).length}
-              </td>
-            </tr>
-            <tr>
-              <td>Days since last dive:</td>
-              <td>{timeSinceLastDive}</td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
-
       {dives.length === 0 ? (
         <>
           <p>No dives logged yet.</p>
@@ -78,6 +48,35 @@ export default async function DivesPage() {
       ) : (
         <>
           <ButtonLink href="/dives/new">Log a new dive!</ButtonLink>
+
+          <article className={styles.overview}>
+            <h3>Totals</h3>
+
+            <table>
+              <tbody>
+                <tr>
+                  <td>Logged dives:</td>
+                  <td>{totalDives}</td>
+                </tr>
+                <tr>
+                  <td>Dive time:</td>
+                  <td>{totalTime}mins</td>
+                </tr>
+                <tr>
+                  <td>Average depth:</td>
+                  <td>{averageDepth}m</td>
+                </tr>
+                <tr>
+                  <td>Nudibranch Dives:</td>
+                  <td>{dives.filter((dive) => dive.seen_nudibranch).length}</td>
+                </tr>
+                <tr>
+                  <td>Days since last dive:</td>
+                  <td>{timeSinceLastDive}</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
 
           {/* TODO: Add filters, sorting and pagination  */}
 

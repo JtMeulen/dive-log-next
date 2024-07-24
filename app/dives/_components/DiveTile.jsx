@@ -25,7 +25,12 @@ export default function DiveTile({ dive }) {
           <p className={styles.location}>
             <em>{dive.location}</em>
           </p>
-          <p className={styles.date}>{dive.date?.toDateString()}</p>
+          <p className={styles.date}>
+            {dive.date?.toLocaleString([], {
+              dateStyle: "long",
+              timeStyle: "short",
+            })}
+          </p>
           <p className={styles.description}>{dive.description}</p>
           <div className={styles.stats}>
             {dive.depth && <span>Max depth: {dive.depth}m</span>}
