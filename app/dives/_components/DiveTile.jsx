@@ -26,11 +26,7 @@ export default function DiveTile({ dive }) {
             <em>{dive.location}</em>
           </p>
           <p className={styles.date}>
-            {dive.date && new Date(dive.date).toLocaleString([], {
-              dateStyle: "long",
-              timeStyle: "short",
-              hourCycle: "h24",
-            })}
+            {dive.date && new Date(dive.date).toDateString() + " at " + new Date(dive.date).toTimeString().slice(0, 5)}
           </p>
           <p className={styles.description}>{dive.description}</p>
           <div className={styles.stats}>

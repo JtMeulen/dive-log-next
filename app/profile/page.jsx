@@ -25,7 +25,7 @@ export default async function ProfilePage() {
         <p>{user.name}</p>
         <p className={styles.email}>{user.email}</p>
         {user.birthdate && (
-          <p>Date of birth: {new Date(user.birthdate).toLocaleDateString()}</p>
+          <p>Date of birth: {new Date(user.birthdate).toLocaleDateString('en-GB')}</p>
         )}
 
         <Actions />
