@@ -1,39 +1,46 @@
-import { redirect } from "next/navigation";
+"use client";
 
-import styles from "./page.module.css";
-import ButtonLink from "@/components/ButtonLink";
-import DiveTile from "./_components/DiveTile";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+
 import { getDives } from "@/lib/actions/getDives";
 
-export default async function DivesPage() {
-  const { dives, error } = await getDives();
+import ButtonLink from "@/components/ButtonLink";
+import DiveTile from "./_components/DiveTile";
+import Totals from "./_components/Totals";
 
-  if (error) {
-    // TODO: Show error message to user or move to a custom error page?
-    return error.includes("Unauthorized") ? redirect("/login") : <p>ERROORR</p>;
-  }
+import styles from "./page.module.css";
+import Loader from "@/components/Loader";
 
-  const totalDives = dives.length;
-  const totalTime = dives.reduce(
-    (acc, dive) => acc + parseInt(dive.time || 0),
-    0
-  );
-  const averageDepth = dives.length
-    ? Math.round(
-        dives.reduce((acc, dive) => acc + parseInt(dive.depth || 0), 0) /
-          totalDives
-      )
-    : 0;
+export default function DivesPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [dives, setDives] = useState([]);
+  const [sort, setSort] = useState("newest");
 
-  // TODO: we should only take the latest dive, so need to filter dives by date
-  // And exclude dives in the future (as they can be added with a future date)
-  const timeSinceLastDive = dives.length
-    ? Math.round(
-        (Date.now() - new Date(dives[0].date).getTime()) / (1000 * 60 * 60 * 24)
-      )
-    : 0;
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+  
+      const { dives, error } = await getDives(sort);
+  
+      if (error) {
+        // TODO: Show error message to user or move to a custom error page?
+        error.includes("Unauthorized") ? router.push("/") : router.push("/error");
+        return;
+      }
+  
+      setDives(dives);
+      setLoading(false);
+    };
+  
+    fetchData();
+  }, [router, sort]);
 
-  return (
+
+  return loading ? (
+    <Loader />
+  ) : (
     <main className={styles.main}>
       <header className={styles.header}>
         <h2>My Dive Log</h2>
@@ -49,36 +56,21 @@ export default async function DivesPage() {
         <>
           <ButtonLink href="/dives/new">Log a new dive!</ButtonLink>
 
-          <article className={styles.overview}>
-            <h3>Totals</h3>
+          <Totals dives={dives} />
 
-            <table>
-              <tbody>
-                <tr>
-                  <td>Logged dives:</td>
-                  <td>{totalDives}</td>
-                </tr>
-                <tr>
-                  <td>Dive time:</td>
-                  <td>{totalTime}mins</td>
-                </tr>
-                <tr>
-                  <td>Average depth:</td>
-                  <td>{averageDepth}m</td>
-                </tr>
-                <tr>
-                  <td>Nudibranch Dives:</td>
-                  <td>{dives.filter((dive) => dive.seen_nudibranch).length}</td>
-                </tr>
-                <tr>
-                  <td>Days since last dive:</td>
-                  <td>{timeSinceLastDive}</td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
+          {/* TODO: extract to own component */}
+          <select name="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="deepest">Deepest first</option>
+            <option value="shallowest">Shallowest first</option>
+            <option value="longest">Longest dive first</option>
+            <option value="shortest">Shortest first</option>
+            <option value="a-z">Alphabet (a-z)</option>
+            <option value="z-a">Alphabet (z-a)</option>
+          </select>
 
-          {/* TODO: Add filters, sorting and pagination  */}
+          {/* TODO: Add filters and pagination  */}
 
           <ul className={styles.grid}>
             {dives.map((dive) => (

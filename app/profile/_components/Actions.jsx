@@ -11,7 +11,7 @@ import Button from "@/components/Button";
 import ButtonLink from "@/components/ButtonLink";
 import Modal from "@/components/Modal";
 
-import styles from "./page.module.css";
+import styles from "./Actions.module.css";
 
 export default function Actions() {
   const [showModal, setShowModal] = useState(false);

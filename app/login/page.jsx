@@ -21,7 +21,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/dives");
+      router.push("/");
     } else if (status === "unauthenticated") {
       setLoading(false);
     }
