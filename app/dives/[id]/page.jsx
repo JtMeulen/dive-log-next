@@ -43,6 +43,9 @@ export default function DivePage({ params }) {
       if (data.error && data.error.includes("Unauthorized")) {
         router.push("/login");
         return;
+      } else if (data.error && data.error.includes("Dive not found")) {
+        router.push("/not-found");
+        return;
       }
 
       setData(data);
