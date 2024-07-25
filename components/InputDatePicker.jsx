@@ -24,7 +24,6 @@ export default function InputDatePicker({
       <DatePicker
         onChange={(date) => setDate(date)}
         selected={date ? new Date(date) : ""}
-        peekNextMonth
         showMonthDropdown
         showYearDropdown
         showTimeInput={withTime}
@@ -34,6 +33,8 @@ export default function InputDatePicker({
         className={styles.input}
         calendarClassName={styles.calendar}
         popperClassName={styles.popup}
+        popperPlacement="bottom-start"
+        showPopperArrow={false}
         maxDate={maxDate}
       />
 

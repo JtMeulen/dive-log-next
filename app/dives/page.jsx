@@ -21,22 +21,23 @@ export default function DivesPage() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-  
+
       const { dives, error } = await getDives(sort);
-  
+
       if (error) {
         // TODO: Show error message to user or move to a custom error page?
-        error.includes("Unauthorized") ? router.push("/") : router.push("/error");
+        error.includes("Unauthorized")
+          ? router.push("/")
+          : router.push("/error");
         return;
       }
-  
+
       setDives(dives);
       setLoading(false);
     };
-  
+
     fetchData();
   }, [router, sort]);
-
 
   return loading ? (
     <Loader />
@@ -59,7 +60,12 @@ export default function DivesPage() {
           <Totals dives={dives} />
 
           {/* TODO: extract to own component */}
-          <select name="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+          <select
+            name="sort"
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className={styles.sort}
+          >
             <option value="newest">Newest first</option>
             <option value="oldest">Oldest first</option>
             <option value="deepest">Deepest first</option>
