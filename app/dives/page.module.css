@@ -18,6 +18,16 @@
   padding: 0;
 }
 
-.sort {
-  align-self: flex-end;
+.filters {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: .5rem;
+}
+
+@media (min-width: 768px) {
+  .filters {
+    justify-content: flex-end;
+  }
 }
