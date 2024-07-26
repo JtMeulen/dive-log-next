@@ -1,29 +1,32 @@
+import { useEffect, useState } from "react";
+import { getDiveTotals } from "@/lib/actions/getDiveTotals";
+
 import styles from "./Totals.module.css";
+import Loader from "@/components/Loader";
 
-export default function Totals({ dives }) {
-  const totalDives = dives.length;
-  const totalTime = dives.reduce(
-    (acc, dive) => acc + parseInt(dive.time || 0),
-    0
-  );
-  const averageDepth = dives.length
-    ? Math.round(
-        dives.reduce((acc, dive) => acc + parseInt(dive.depth || 0), 0) /
-          totalDives
-      )
-    : 0;
+export default function Totals() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const timeSinceLastDive = dives.length
-    ? Math.round(
-        (Date.now() -
-          new Date(
-            dives.filter((a) => new Date(a.date) < new Date())[0].date
-          ).getTime()) /
-          (1000 * 60 * 60 * 24)
-      )
-    : 0;
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await getDiveTotals();
 
-  return (
+      if (data) {
+        setData(data);
+      }
+
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  return loading ? (
+    <div className={styles.loader}>
+      <Loader />
+    </div>
+  ) : !data ? null : (
     <article className={styles.overview}>
       <h3>Totals</h3>
 
@@ -31,23 +34,23 @@ export default function Totals({ dives }) {
         <tbody>
           <tr>
             <td>Logged dives:</td>
-            <td>{totalDives}</td>
+            <td>{data.totalDives}</td>
           </tr>
           <tr>
             <td>Dive time:</td>
-            <td>{totalTime}mins</td>
+            <td>{data.totalTime}mins</td>
           </tr>
           <tr>
             <td>Average depth:</td>
-            <td>{averageDepth}m</td>
+            <td>{data.averageDepth}m</td>
           </tr>
           <tr>
             <td>Nudibranch Dives:</td>
-            <td>{dives.filter((dive) => dive.seen_nudibranch).length}</td>
+            <td>{data.nudibranchesSeen}</td>
           </tr>
           <tr>
             <td>Days since last dive:</td>
-            <td>{timeSinceLastDive}</td>
+            <td>{data.timeSinceLastDive}</td>
           </tr>
         </tbody>
       </table>

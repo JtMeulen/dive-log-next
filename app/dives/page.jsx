@@ -28,9 +28,7 @@ export default function DivesPage() {
       const { dives, error } = await getDives(sort, debouncedSearch);
 
       if (error) {
-        error.includes("Unauthorized")
-          ? router.push("/")
-          : router.push("/error");
+        router.push("/")
         return;
       }
 
@@ -58,7 +56,7 @@ export default function DivesPage() {
 
       <ButtonLink href="/dives/new">Log a new dive!</ButtonLink>
 
-      <Totals dives={dives} />
+      <Totals />
 
       <div className={styles.filters}>
         <Input
