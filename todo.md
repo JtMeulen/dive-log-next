@@ -1,5 +1,4 @@
 - Protect pages based on auth
-- Add error.tsx page
 - Image upload protection
   - Size
   - Content?
