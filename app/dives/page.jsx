@@ -6,12 +6,12 @@ import { useState, useEffect } from "react";
 import { getDives } from "@/lib/actions/getDives";
 
 import ButtonLink from "@/components/ButtonLink";
+import Input from "@/components/Input";
 import DiveTile from "./_components/DiveTile";
+import Skeleton from "./_components/Skeleton";
 import Totals from "./_components/Totals";
 
 import styles from "./page.module.css";
-import Loader from "@/components/Loader";
-import Input from "@/components/Input";
 
 export default function DivesPage() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function DivesPage() {
       const { dives, error } = await getDives(sort, debouncedSearch);
 
       if (error) {
-        router.push("/")
+        router.push("/");
         return;
       }
 
@@ -82,17 +82,17 @@ export default function DivesPage() {
         </select>
       </div>
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <ul className={styles.grid}>
-          {dives.map((dive) => (
+      <ul className={styles.grid}>
+        {loading ? (
+          new Array(6).fill(null).map((_, index) => <Skeleton key={index} />)
+        ) : (
+          dives.map((dive) => (
             <li key={dive._id?.toString()}>
               <DiveTile dive={dive} />
             </li>
-          ))}
-        </ul>
-      )}
+          ))
+        )}
+      </ul>
     </main>
   );
 }

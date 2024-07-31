@@ -5,7 +5,7 @@ import styles from "./Totals.module.css";
 import Loader from "@/components/Loader";
 
 export default function Totals() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,11 +22,11 @@ export default function Totals() {
     fetchData();
   }, []);
 
-  return loading ? (
-    <div className={styles.loader}>
-      <Loader />
-    </div>
-  ) : !data ? null : (
+  const renderDataOrLoader = (data, suffix) => {
+    return data ?? data === 0 ? <td>{data}{suffix}</td> : <td className={styles.loader}><Loader /></td>;
+  };
+
+  return (
     <article className={styles.overview}>
       <h3>Totals</h3>
 
@@ -34,23 +34,23 @@ export default function Totals() {
         <tbody>
           <tr>
             <td>Logged dives:</td>
-            <td>{data.totalDives}</td>
+            {renderDataOrLoader(data.totalDives)}
           </tr>
           <tr>
             <td>Dive time:</td>
-            <td>{data.totalTime}mins</td>
+            {renderDataOrLoader(data.totalTime, "min")}
           </tr>
           <tr>
             <td>Average depth:</td>
-            <td>{data.averageDepth}m</td>
+            {renderDataOrLoader(data.averageDepth, "m")}
           </tr>
           <tr>
             <td>Nudibranch Dives:</td>
-            <td>{data.nudibranchesSeen}</td>
+            {renderDataOrLoader(data.nudibranchesSeen)}
           </tr>
           <tr>
             <td>Days since last dive:</td>
-            <td>{data.timeSinceLastDive}</td>
+            {renderDataOrLoader(data.timeSinceLastDive)}
           </tr>
         </tbody>
       </table>

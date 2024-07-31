@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 
 import styles from "./Header.module.css";
 import NavLink from "@/components/NavLink";
+import Loader from "@/components/Loader";
 import LogoImg from "@/public/logo.png";
 
 export default function Header() {
@@ -40,6 +41,11 @@ export default function Header() {
 
         <nav className={styles.nav}>
           <ul>
+            {status === "loading" && (
+              <li className={styles.loader}>
+                <Loader />
+              </li>
+            )}
             {status === "authenticated" && (
               <>
                 <li>
