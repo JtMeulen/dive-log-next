@@ -6,7 +6,17 @@
   color: unset;
 }
 
+.tile:hover {
+  outline: 2px solid rgb(46, 32, 107);
+}
+
+.tile:hover .imageWrapper img {
+  transform: scale(1.01);
+}
+
 .tile {
+  outline: 2px solid transparent;
+  transition: outline .2s ease-out;
   border-radius: 12px;
   box-shadow: var(--container-box-shadow);
   background: var(--container-background);
@@ -22,6 +32,7 @@
 
 .imageWrapper img {
   object-fit: cover;
+  transition: transform .2s ease-out;
 }
 
 .nudiStamp {
