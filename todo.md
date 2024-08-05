@@ -1,7 +1,4 @@
 - Protect pages based on auth
-- Image upload protection
-  - Size
-  - Content?
 - Readme fixing
 - Image picker to handle enter key on focus
 - Darkmode (deep-sea mode)
