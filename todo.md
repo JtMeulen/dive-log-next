@@ -3,3 +3,4 @@
 - Image picker to handle enter key on focus
 - Darkmode (deep-sea mode)
 - Datepicker time input looks different on various devices
+- map search function

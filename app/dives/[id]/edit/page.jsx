@@ -68,8 +68,8 @@ export default function EditDivePage({ params }) {
     const response = await updateDive(formData, id);
 
     if (response?.error) {
-      toast.error(response.error);
       setLoading(false);
+      toast.error(response.error);
     }
 
     if (response?.dive) {
@@ -79,91 +79,99 @@ export default function EditDivePage({ params }) {
     }
   };
 
+  const showLoader = loading || status === "loading" || !defaultData.dive;
+
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Edit your dive!</h1>
-      {/* TODO: loading state should not reset form data (just hide the form instead of not rendering) */}
-      {loading || status === "loading" || !defaultData.dive ? (
-        <Loader />
-      ) : (
-        <>
-          <form onSubmit={handleSubmit} ref={formRef}>
-            <Input
-              type="text"
-              name="title"
-              label="Title of the dive"
-              placeholder="e.g. Night dive at the pier"
-              defaultValue={defaultData.dive.title}
-              required
-            />
-            <Input
-              type="text"
-              name="location"
-              label="Dive site"
-              placeholder="e.g. Blue Hole, Gozo"
-              defaultValue={defaultData.dive.location}
-            />
-            <Input
-              type="text"
-              name="description"
-              label="Short description"
-              max="80"
-              placeholder="e.g. Saw so many nudibranches!"
-              defaultValue={defaultData.dive.description}
-            />
-            <InputDatePicker
-              name="date"
-              label="Date and time"
-              defaultValue={defaultData.dive.date}
-              required
-              withTime
-            />
-            <Input
-              type="number"
-              name="time"
-              label="Dive time (minutes)"
-              min="0"
-              defaultValue={defaultData.dive.time}
-            />
-            <Input
-              type="number"
-              step="0.1"
-              name="depth"
-              label="Depth (meters)"
-              min="0"
-              defaultValue={defaultData.dive.depth}
-            />
-            <Textarea
-              name="notes"
-              label="Notes"
-              placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
-              defaultValue={defaultData.dive.notes}
-            />
-            <Switch
-              name="seen_nudibranch"
-              label="Seen any nudibranches?"
-              defaultChecked={defaultData.dive.seen_nudibranch}
-            />
 
-            <ImagePicker
-              name="image"
-              label="Image"
-              defaultImage={defaultData.dive.image}
+      {showLoader && (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      )}
+
+      {defaultData.dive && (
+        <form
+          onSubmit={handleSubmit}
+          ref={formRef}
+          className={`${showLoader && styles.hide}`}
+        >
+          <Input
+            type="text"
+            name="title"
+            label="Title of the dive"
+            placeholder="e.g. Night dive at the pier"
+            defaultValue={defaultData?.dive?.title}
+            required
+          />
+          <Input
+            type="text"
+            name="location"
+            label="Dive site"
+            placeholder="e.g. Blue Hole, Gozo"
+            defaultValue={defaultData?.dive?.location}
+          />
+          <Input
+            type="text"
+            name="description"
+            label="Short description"
+            max="80"
+            placeholder="e.g. Saw so many nudibranches!"
+            defaultValue={defaultData?.dive?.description}
+          />
+          <InputDatePicker
+            name="date"
+            label="Date and time"
+            defaultValue={defaultData?.dive?.date}
+            required
+            withTime
+          />
+          <Input
+            type="number"
+            name="time"
+            label="Dive time (minutes)"
+            min="0"
+            defaultValue={defaultData?.dive?.time}
+          />
+          <Input
+            type="number"
+            step="0.1"
+            name="depth"
+            label="Depth (meters)"
+            min="0"
+            defaultValue={defaultData?.dive?.depth}
+          />
+          <Textarea
+            name="notes"
+            label="Notes"
+            placeholder={`- 20 nudibranches 💕\n- 4 turtles\n- ...`}
+            defaultValue={defaultData?.dive?.notes}
+          />
+          <Switch
+            name="seen_nudibranch"
+            label="Seen any nudibranches?"
+            defaultChecked={defaultData?.dive?.seen_nudibranch}
+          />
+
+          <ImagePicker
+            name="image"
+            label="Image"
+            defaultImage={defaultData?.dive?.image}
+          />
+
+          <label className={styles.mapLabel}>Map location</label>
+          <div className={styles.mapContainer}>
+            <Map
+              allowChange
+              handleCoordsChange={onCoordsChange}
+              coords={defaultData?.dive?.location_coords}
+              showDefaultMarker
             />
+          </div>
 
-            <label className={styles.mapLabel}>Map location</label>
-            <div className={styles.mapContainer}>
-              <Map
-                allowChange
-                handleCoordsChange={onCoordsChange}
-                coords={defaultData.dive.location_coords}
-                showDefaultMarker
-              />
-            </div>
-
-            <Button type="submit">Save</Button>
-          </form>
-        </>
+          <Button type="submit">Save</Button>
+        </form>
       )}
     </main>
   );

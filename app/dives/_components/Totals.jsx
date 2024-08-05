@@ -23,7 +23,16 @@ export default function Totals() {
   }, []);
 
   const renderDataOrLoader = (data, suffix) => {
-    return data ?? data === 0 ? <td>{data}{suffix}</td> : <td className={styles.loader}><Loader /></td>;
+    return loading || (!data && !data === 0)  ? (
+      <td className={styles.loader}>
+        <Loader />
+      </td>
+    ) : (
+      <td>
+        {data}
+        {suffix}
+      </td>
+    );
   };
 
   return (

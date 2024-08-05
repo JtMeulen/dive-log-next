@@ -27,3 +27,12 @@
   height: 15rem;
   margin-bottom: 1rem;
 }
+
+.hide {
+  display: none;
+}
+
+.loader {
+  width: 50px;
+  margin-top: 50px;
+}
