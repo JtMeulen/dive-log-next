@@ -55,8 +55,13 @@ export default function Input({ label, name, defaultImage, ...rest }) {
         id={name}
         className={styles.input}
         onChange={handleImageChange}
+        aria-describedby={`${name}-description`}
         {...rest}
       ></input>
+
+      <em id={`${name}-description`} className={styles.description}>
+        Max size is 4mb. Supported formats: PNG, JPG, JPEG, HEIC, HEIF.
+      </em>
     </div>
   );
 }
