@@ -18,6 +18,7 @@ import InputDatePicker from "@/components/InputDatePicker";
 const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 
 import styles from "./page.module.css";
+import { track } from "@vercel/analytics/react";
 
 export default function EditDivePage({ params }) {
   const { id } = params;
@@ -56,6 +57,7 @@ export default function EditDivePage({ params }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    track("edit-dive");
 
     const formData = new FormData(e.currentTarget);
 

@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 import { newDiveAction } from "@/lib/actions/newDive";
 
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Textarea from "@/components/Textarea";
@@ -21,6 +21,7 @@ const Map = dynamic(() => import("@/components/Map"), { ssr: false });
 import lottieConfetti from "@/public/confetti.lottie";
 
 import styles from "./page.module.css";
+import { track } from "@vercel/analytics/react";
 
 export default function NewDivePage() {
   const { status } = useSession();
@@ -42,6 +43,7 @@ export default function NewDivePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    track("new-dive");
 
     const formData = new FormData(e.currentTarget);
 

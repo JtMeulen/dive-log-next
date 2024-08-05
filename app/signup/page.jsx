@@ -15,6 +15,7 @@ import { passwordPattern, emailPattern } from "@/utils/validation/patterns";
 
 import styles from "./page.module.css";
 import Divider from "@/components/Divider";
+import { track } from "@vercel/analytics/react";
 
 export default function SignupPage() {
   const { status } = useSession();
@@ -34,6 +35,7 @@ export default function SignupPage() {
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
+    track("signup");
 
     const formData = new FormData(e.target);
 
