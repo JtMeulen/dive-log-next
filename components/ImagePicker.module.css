@@ -2,14 +2,22 @@
   display: inline-flex;
   flex-direction: column;
   margin-bottom: 12px;
+  position: relative;
 }
 
 .label {
   margin-bottom: 4px;
 }
 
+/* Keep the input focusable */
 .input {
-  display: none;
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .imagePreview {
@@ -31,6 +39,15 @@
   .imagePreview {
     font-size: 2rem;
   }
+}
+
+.inputWrapper:has(.input:invalid) .imagePreview {
+  border-color: var(--error-color);
+}
+
+.inputWrapper:has(.input:focus) .imagePreview {
+  outline: 1px dotted #212121;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 .imagePreview img {

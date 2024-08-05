@@ -1,15 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import styles from "./ImagePicker.module.css";
 import Image from "next/image";
 
 export default function Input({ label, name, defaultImage, ...rest }) {
+  const inputRef = useRef(null);
   const [imageFile, setImageFile] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files?.[0];
+
+    if (file && file.size > 4 * 1024 * 1024) {
+      // 4MB limit
+      inputRef.current.setCustomValidity("File size exceeds 4MB limit");
+    } else {
+      inputRef.current.setCustomValidity("");
+    }
 
     if (!file) {
       setImageFile(null);
@@ -34,7 +42,6 @@ export default function Input({ label, name, defaultImage, ...rest }) {
 
         <div
           className={`${styles.imagePreview} ${hasImage && styles.hasImage}`}
-          tabIndex={0}
         >
           {hasImage && (
             <Image
@@ -56,6 +63,7 @@ export default function Input({ label, name, defaultImage, ...rest }) {
         className={styles.input}
         onChange={handleImageChange}
         aria-describedby={`${name}-description`}
+        ref={inputRef}
         {...rest}
       ></input>
 
